@@ -1,0 +1,31 @@
+{
+    "name": "Void Launcher - Android Native",
+    // Reference your custom Dockerfile
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            // Pass the API and Build Tools versions to the Dockerfile
+            "ANDROID_API_LEVEL": "34",
+            "ANDROID_BUILD_TOOLS_VERSION": "34.0.0"
+        }
+    },
+    // Recommended VS Code extensions for Android/Kotlin/Java development
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vscjava.vscode-java-pack", // Java development essentials
+                "fwcd.kotlin", // Kotlin language support
+                "redhat.vscode-xml", // XML support for AndroidManifest and layouts
+                "ms-azuretools.vscode-containers",
+                "ms-azuretools.vscode-containers",
+                "zhuangtongfa.material-theme"
+            ]
+        }
+    },
+    // Forward the ADB port (5037) to your local machine for easier physical device debugging
+    "forwardPorts": [
+        5037
+    ],
+    // Command to verify the setup after the container is built
+    "postCreateCommand": "/usr/local/android-sdk/cmdline-tools/latest/bin/sdkmanager --list_installed && echo 'Void Launcher Codespace is ready. Use ./gradlew assembleDebug to build your APK.'"
+}
