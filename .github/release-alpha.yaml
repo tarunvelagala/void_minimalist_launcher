@@ -1,0 +1,79 @@
+name: Alpha Release (APK)
+
+on:
+  # Trigger the workflow when code is pushed to the 'release/alpha' branch
+  push:
+    branches:
+      - 'release/alpha'
+  # Allows manual runs via the GitHub UI
+  workflow_dispatch:
+
+jobs:
+  build_and_release:
+    runs-on: ubuntu-latest
+    
+    # Define secrets to be used as environment variables in this job
+    env:
+      ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # --- 1. Set up Build Environment (Java & Android SDK) ---
+      - name: ☕ Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle' 
+
+      - name: 📱 Install Android SDK components
+        uses: android-actions/setup-android@v3
+        with:
+          # These must match your app/build.gradle.kts compileSdk (34)
+          api-level: 34
+          build-tools: 34.0.0
+          cmdline-tools-version: latest
+          check-latest: true 
+
+      # --- 2. Inject Signing Secrets ---
+      # This is the secure step where secrets are converted into build files
+      - name: Decode Keystore & Create Signing Properties
+        run: |
+          echo "Preparing signing files for secure build..."
+          
+          # Create the actual binary keystore file from the Base64 secret
+          echo "${{ env.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > app/void_launcher.jks
+          
+          # Create the signing.properties file for Gradle to read (this file is referenced in app/build.gradle.kts)
+          echo "storeFile=void_launcher.jks" >> ./app/signing.properties
+          echo "storePassword=${{ env.KEYSTORE_PASSWORD }}" >> ./app/signing.properties
+          echo "keyAlias=${{ env.KEY_ALIAS }}" >> ./app/signing.properties
+          echo "keyPassword=${{ env.KEY_PASSWORD }}" >> ./app/signing.properties
+        
+      # --- 3. Build and Release ---
+      - name: Grant execute permission to gradlew
+        run: chmod +x gradlew
+        
+      - name: Build Release APK
+        # The 'release' task automatically signs the APK using the keys injected in the previous step
+        run: ./gradlew assembleRelease
+
+      - name: Create GitHub Release and Upload APK
+        uses: softprops/action-gh-release@v2
+        with:
+          # Use a combination of the branch name and commit hash for a unique tag name
+          tag_name: alpha-${{ github.sha }}
+          name: Void Launcher Alpha Build (${{ github.ref_name }})
+          body: |
+            Automated Alpha Build for testing.
+            Source commit: ${{ github.sha }}
+          # The path to the signed APK built by Gradle
+          files: app/build/outputs/apk/release/app-release.apk
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for creating the release
