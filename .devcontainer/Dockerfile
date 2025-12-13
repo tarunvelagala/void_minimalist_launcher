@@ -1,39 +1,48 @@
-# Start from a universal base image that includes essential tools like Git and common libraries
-FROM mcr.microsoft.com/devcontainers/universal:latest
+# https://github.com/cirruslabs/docker-images-android/pkgs/container/android-sdk
+# https://github.com/cirruslabs/docker-images-android/blob/master/sdk/36/Dockerfile
+ARG android_sdk_ver=36
+FROM ghcr.io/cirruslabs/android-sdk:${android_sdk_ver}
 
-# --- 1. Set Environment Variables ---
-ENV ANDROID_SDK_ROOT=/usr/local/android-sdk
-ENV PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools
+ARG flutter_ver=3.38.4
+ARG build_rev=0
 
-# Set the desired API level and build tools version for your project
-ARG ANDROID_API_LEVEL=34
-ARG ANDROID_BUILD_TOOLS_VERSION=34.0.0
-ARG JAVA_VERSION=openjdk-17
 
-# --- 2. Install Required Packages & Java ---
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get install -y --no-install-recommends \
-        unzip \
-        default-jre \
-    # Install JDK 17 (recommended for modern Android/Gradle)
-    && apt-get install -y "$JAVA_VERSION-jdk" \
-    # Clean up APT caches
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# --- 3. Install Android SDK Command Line Tools ---
-RUN mkdir -p $ANDROID_SDK_ROOT/cmdline-tools \
-    && curl -o android-sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip \
-    && unzip android-sdk-tools.zip -d $ANDROID_SDK_ROOT/cmdline-tools \
-    && mv $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools $ANDROID_SDK_ROOT/cmdline-tools/latest \
-    && rm android-sdk-tools.zip
-
-# --- 4. Accept Licenses and Install SDK Components ---
-# We use yes | to automatically accept all Android SDK licenses
-RUN yes | sdkmanager --licenses \
-    && sdkmanager "platforms;android-${ANDROID_API_LEVEL}" \
-    && sdkmanager "build-tools;${ANDROID_BUILD_TOOLS_VERSION}" \
-    && sdkmanager platform-tools
-
-# Set the default user to 'vscode' for security and compatibility
-USER vscode
+# Install Flutter
+ENV FLUTTER_HOME=/usr/local/flutter \
+    FLUTTER_VERSION=${flutter_ver} \
+    PATH=$PATH:/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin
+RUN apt-get update \
+ && apt-get upgrade -y \
+ && apt-get install -y --no-install-recommends --no-install-suggests \
+            ca-certificates \
+ && update-ca-certificates \
+    \
+ # Install dependencies for Linux toolchain
+ && apt-get install -y --no-install-recommends --no-install-suggests \
+            build-essential \
+            clang cmake \
+            lcov \
+            libgtk-3-dev liblzma-dev \
+            ninja-build \
+            pkg-config \
+    \
+ # Install ZSH 
+&& apt-get install zsh \
+ # Install Flutter itself
+ && curl -fL -o /tmp/flutter.tar.xz \
+         https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${flutter_ver}-stable.tar.xz \
+ && tar -xf /tmp/flutter.tar.xz -C /usr/local/ \
+ && git config --global --add safe.directory /usr/local/flutter \
+ && flutter config --enable-android \
+                   --enable-linux-desktop \
+                   --enable-web \
+                   --no-enable-ios \
+ && flutter precache --universal --linux --web --no-ios \
+ && (yes | flutter doctor --android-licenses) \
+ && flutter --version \
+    \
+ # Make Flutter tools available for non-root usage
+ && chown -R 1000:1000 /usr/local/flutter/packages/flutter_tools/.dart_tool/ \
+    \
+ && rm -rf /var/lib/apt/lists/* \
+           /tmp/*
