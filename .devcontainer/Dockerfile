@@ -34,10 +34,10 @@ RUN apt-get update \
  && tar -xf /tmp/flutter.tar.xz -C /usr/local/ \
  && git config --global --add safe.directory /usr/local/flutter \
  && flutter config --enable-android \
-                   --enable-linux-desktop \
-                   --enable-web \
+                   --no-enable-linux-desktop \
+                   --no-enable-web \
                    --no-enable-ios \
- && flutter precache --universal --linux --web --no-ios \
+ && flutter precache --android \
  && (yes | flutter doctor --android-licenses) \
  && flutter --version \
     \
