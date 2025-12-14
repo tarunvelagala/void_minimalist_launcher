@@ -11,6 +11,7 @@
                 "Dart-Code.flutter",
                 "Dart-Code.dart-code",
                 "ms-azuretools.vscode-containers",
+                "pkief.material-icon-theme",
                 "zhuangtongfa.material-theme"
             ]
         }
