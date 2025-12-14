@@ -27,7 +27,7 @@ RUN apt-get update \
             pkg-config \
     \
  # Install ZSH 
-&& apt-get install zsh \
+&& apt-get -y install zsh \
  # Install Flutter itself
  && curl -fL -o /tmp/flutter.tar.xz \
          https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_${flutter_ver}-stable.tar.xz \
