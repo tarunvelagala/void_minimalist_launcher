@@ -3,7 +3,7 @@ name: Flutter Deployment
 on:
   push:
     branches:
-      - main
+      - release/alpha
 
 jobs:
   build-and-deploy:
