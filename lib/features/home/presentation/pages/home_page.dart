@@ -9,11 +9,9 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   void _navigateToSettings(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const SettingsPage(),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => const SettingsPage()));
   }
 
   @override
@@ -21,26 +19,32 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: GestureDetector(
         onLongPress: () => _navigateToSettings(context),
-        behavior: HitTestBehavior.translucent, // Ensure long press works on empty space
+        behavior: HitTestBehavior
+            .translucent, // Ensure long press works on empty space
         child: Consumer<HomeSettingsProvider>(
           builder: (context, settings, child) {
             return SizedBox.expand(
               child: Column(
-                crossAxisAlignment: settings.alignment,
                 children: [
-                  const Spacer(flex: 1),
-                  Padding(
-                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                   child: Column(
-                     crossAxisAlignment: settings.alignment,
-                      children: const [
-                        ClockWidget(),
-                        SizedBox(height: 16),
-                        UsageStatsDisplay(),
-                      ],
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(24.0, 16.0, 24.0, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          ClockWidget(),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: UsageStatsDisplay(),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const Spacer(flex: 2),
+                  const Spacer(),
                 ],
               ),
             );

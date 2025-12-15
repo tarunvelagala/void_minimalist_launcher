@@ -108,8 +108,10 @@ void-minimalist-launcher/
 - Large time display (primary focus, like 8:11)
 - **No app icons or shortcuts** - truly minimal
 
-**Commit 6**: Add home screen details
-- Date and battery info (small, subtle)
+**Commit 6**: Update the alignment of home screen.
+- We have to place the clock and date in the top left corner of the screen.
+- Usage Stats should be in the top right corner of the screen.
+- The remaining space is a placeholder for the home app.
 
 **Commit 7**: Add wallpaper support
 - Wallpaper support
