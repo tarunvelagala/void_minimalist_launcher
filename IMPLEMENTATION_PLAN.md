@@ -77,7 +77,7 @@ void-minimalist-launcher/
 ```
 
 **Commit 1**: Initialize Flutter project
-- Run `flutter create --org com.vtkr --project-name void_launcher .`
+- Run `flutter create --org com.vtkr --project-name return_zero .`
 - Clean up default counter app code
 
 **Commit 2**: Configure Android manifest for launcher
