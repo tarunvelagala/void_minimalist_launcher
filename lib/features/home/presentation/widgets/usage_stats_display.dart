@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/core/utils/usage_utils.dart';
-import 'package:return_zero/features/home/presentation/widgets/stats_row.dart';
+import 'package:return_zero/features/home/domain/utils/usage_utils.dart';
+import 'package:return_zero/features/home/presentation/widgets/stats_row_widget.dart';
 
 class UsageStatsDisplay extends StatefulWidget {
   const UsageStatsDisplay({super.key});

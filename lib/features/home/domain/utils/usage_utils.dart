@@ -1,12 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:usage_stats/usage_stats.dart';
-
-class UsageData {
-  final String screenTime;
-  final int unlockCount;
-
-  UsageData({required this.screenTime, required this.unlockCount});
-}
+import 'package:return_zero/features/home/domain/models/usage_data_model.dart';
 
 class UsageUtils {
   static Future<bool> checkPermission() async {
@@ -17,7 +11,7 @@ class UsageUtils {
     await UsageStats.grantUsagePermission();
   }
 
-  static Future<UsageData> getStats() async {
+  static Future<UsageDataModel> getStats() async {
     try {
       DateTime now = DateTime.now();
       DateTime startOfDay = DateTime(now.year, now.month, now.day);
@@ -57,10 +51,10 @@ class UsageUtils {
         }
       }
 
-      return UsageData(screenTime: timeString, unlockCount: unlocks);
+      return UsageDataModel(screenTime: timeString, unlockCount: unlocks);
     } catch (e) {
       debugPrint('Error fetching usage stats: $e');
-      return UsageData(screenTime: '0m', unlockCount: 0);
+      return UsageDataModel(screenTime: '0m', unlockCount: 0);
     }
   }
 }

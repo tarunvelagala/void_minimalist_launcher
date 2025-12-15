@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/core/constants/colors.dart';
+import 'package:return_zero/core/constants/app_colors.dart';
 
 class AppTheme {
   // Prevent instantiation
@@ -41,9 +41,7 @@ class AppTheme {
         color: AppColors.darkDivider,
         thickness: 1,
       ),
-      iconTheme: const IconThemeData(
-        color: AppColors.darkTextPrimary,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.darkTextPrimary),
     );
   }
 
@@ -83,9 +81,7 @@ class AppTheme {
         color: AppColors.lightDivider,
         thickness: 1,
       ),
-      iconTheme: const IconThemeData(
-        color: AppColors.lightTextPrimary,
-      ),
+      iconTheme: const IconThemeData(color: AppColors.lightTextPrimary),
     );
   }
 }

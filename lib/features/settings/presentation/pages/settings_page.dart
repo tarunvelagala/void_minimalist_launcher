@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:return_zero/core/providers/theme_settings_provider.dart';
+import 'package:return_zero/core/config/providers/theme_settings_provider.dart';
 import 'package:return_zero/features/home/presentation/providers/home_settings_provider.dart';
 import 'package:return_zero/features/settings/presentation/widgets/text_size_slider.dart';
 
