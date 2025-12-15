@@ -117,10 +117,9 @@ void-minimalist-launcher/
 
 **Commit 7**: [OPTIONAL] Add minimal wallpaper selector with quotes
 - Curated minimal wallpapers (dark, nature, abstract)
-- Motivating quotes overlay on wallpaper
+- Motivating quotes overlay
 - Daily quote rotation
-- Wallpaper settings UI
-- **Note**: Can be implemented later if time permits
+- Fully customizable in settings
 
 **Commit 8**: Add gesture detection framework
 - Swipe up for app drawer (with auto-keyboard)
@@ -249,9 +248,20 @@ void-minimalist-launcher/
 
 ### Phase 7: Polish & Settings
 
-#### [NEW] Settings Screen
-**Commit 26**: Create minimal settings infrastructure
-- Text-only settings menu
+#### [NEW] [feeds_page.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/feeds/presentation/pages/feeds_page.dart)
+- **Purpose**: View historic usage stats and add widgets (habit tracker, pomo, etc.).
+- **Layout**: Scaffold with "Feeds" title for now.
+- **Interaction**: Accessed by tapping `UsageStatsDisplay`.
+
+#### [MODIFY] [usage_stats_display.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/home/presentation/widgets/usage_stats_display.dart)
+- **Components**:
+    - Unlock Count and Screen Time.
+- **Layout**:
+    - `Column` with `CrossAxisAlignment.center` (Text/Icons centered relative to each other).
+- **Interaction**:
+    - **Tap**: Navigates to `FeedsPage`.
+
+#### [NEW] [settings_page.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/settings/presentation/pages/settings_page.dart)
 - Preference storage
 - Navigation
 
