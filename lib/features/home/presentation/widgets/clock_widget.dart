@@ -66,27 +66,41 @@ class _ClockWidgetState extends State<ClockWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final timeFormat = DateFormat('h:mm a');
+    final timeFormat = DateFormat('h:mm');
     final dateFormat = DateFormat('EEE, MMM d');
+    final antiMerdianFormat = DateFormat('a');
 
     return GestureDetector(
       onTap: _launchClockApp,
       behavior: HitTestBehavior.opaque,
       child: Column(
         children: [
-          Text(
-            timeFormat.format(_currentTime),
-            style: Theme.of(context).textTheme.displayLarge?.copyWith(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                timeFormat.format(_currentTime),
+                style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   fontWeight: FontWeight.w300,
                   fontSize: 64, // Slightly larger for emphasis
                 ),
+              ),
+              Text(
+                antiMerdianFormat.format(_currentTime),
+                style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                  fontWeight: FontWeight.w300,
+                  fontSize: 32, // Slightly larger for emphasis
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 8),
           Text(
             dateFormat.format(_currentTime),
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w300,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w300),
           ),
         ],
       ),

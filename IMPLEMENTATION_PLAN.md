@@ -106,22 +106,26 @@ void-minimalist-launcher/
 #### [NEW] Home Screen Layout
 **Commit 5**: Implement home screen with large clock
 - Large time display (primary focus, like 8:11)
-- Date and battery info (small, subtle)
-- Wallpaper support
 - **No app icons or shortcuts** - truly minimal
 
-**Commit 6**: Add prominent screen time indicator
+**Commit 6**: Add home screen details
+- Date and battery info (small, subtle)
+
+**Commit 7**: Add wallpaper support
+- Wallpaper support
+
+**Commit 8**: Add prominent screen time indicator
 - Screen time widget at top ("1h 12m" format)
 - Tap to see detailed usage stats
 - Today's unlock count display
 
-**Commit 7**: [OPTIONAL] Add minimal wallpaper selector with quotes
+**Commit 9**: [OPTIONAL] Add minimal wallpaper selector with quotes
 - Curated minimal wallpapers (dark, nature, abstract)
 - Motivating quotes overlay
 - Daily quote rotation
 - Fully customizable in settings
 
-**Commit 8**: Add gesture detection framework
+**Commit 10**: Add gesture detection framework
 - Swipe up for app drawer (with auto-keyboard)
 - Swipe down for quick settings
 - Floating button for My Feeds
@@ -131,38 +135,38 @@ void-minimalist-launcher/
 ### Phase 3: App Management
 
 #### [NEW] Text-Only App Drawer with Smart Search
-**Commit 9**: Create app list service
+**Commit 11**: Create app list service
 - Query installed apps
 - Filter system apps
 - Sort alphabetically (A-Z)
 - **No icon loading** - text names only
 - Fuzzy search algorithm for quick matching
 
-**Commit 10**: Build icon-less app drawer UI with auto-keyboard
+**Commit 12**: Build icon-less app drawer UI with auto-keyboard
 - Simple vertical text list (app names)
 - Clean, monospace or sans-serif font
 - Ample spacing between items
 - No icons, no colors - pure text
 - **Auto-open keyboard** when app drawer opens
 
-**Commit 11**: Implement smart 3-letter app launch
+**Commit 13**: Implement smart 3-letter app launch
 - If user types 3 letters and only ONE app matches → auto-launch
 - If 2+ apps match → show filtered list
 - Real-time filtering as user types
 - Smart matching (e.g., "gma" → Gmail)
 
-**Commit 12**: Implement app launch
+**Commit 14**: Implement app launch
 - Tap on app name to launch
 - Smooth transitions
 - Error handling
 
 #### [NEW] App Blocking Feature
-**Commit 13**: Create app blocking service
+**Commit 15**: Create app blocking service
 - Store blocked apps list
 - Check if app is blocked before launch
 - Show subtle warning when attempting to launch
 
-**Commit 14**: Add minimal app blocking UI
+**Commit 16**: Add minimal app blocking UI
 - Long-press on app name to block/unblock
 - Dimmed text or strikethrough for blocked apps
 - Settings screen for blocked apps list
@@ -173,17 +177,17 @@ void-minimalist-launcher/
 ### Phase 4: Notification Management
 
 #### [NEW] Notification Listener Service
-**Commit 15**: Create notification listener
+**Commit 17**: Create notification listener
 - Implement `NotificationListenerService`
 - Request notification access permission
 - Basic notification interception
 
-**Commit 16**: Implement notification blocking
+**Commit 18**: Implement notification blocking
 - Block notifications from specific apps
 - Store blocked notification apps
 - Permission request UI (minimal)
 
-**Commit 17**: Notification settings UI
+**Commit 19**: Notification settings UI
 - Text-only list of apps with notification access
 - Toggle notification blocking per app
 - Minimal visual feedback
@@ -193,27 +197,27 @@ void-minimalist-launcher/
 ### Phase 5: Usage Tracking & My Feeds
 
 #### [NEW] Usage Statistics Service
-**Commit 18**: Request usage stats permission
+**Commit 20**: Request usage stats permission
 - Permission check and request
 - Settings redirect UI (minimal)
 
-**Commit 19**: Implement unlock count tracker
+**Commit 21**: Implement unlock count tracker
 - Track screen unlock events
 - Store daily count
 - Reset at midnight
 
-**Commit 20**: Implement screen time tracker
+**Commit 22**: Implement screen time tracker
 - Query usage stats API
 - Calculate daily screen time
 - Per-app usage stats
 
 #### [NEW] My Feeds Screen - Widget Dashboard
-**Commit 21**: Create floating "My Feeds" button
+**Commit 23**: Create floating "My Feeds" button
 - Floating action button (minimal, subtle)
 - Shows on home screen
 - Slide-up panel animation
 
-**Commit 22**: Build My Feeds screen UI with drag-and-drop
+**Commit 24**: Build My Feeds screen UI with drag-and-drop
 - Usage stats section (unlock count, screen time) as cards
 - Text-only breakdown of top apps
 - Today's usage list (sorted by time)
@@ -221,7 +225,7 @@ void-minimalist-launcher/
 - Smooth reordering animations
 - **No graphs or fancy charts** - just the numbers
 
-**Commit 23**: Add widget integration to My Feeds
+**Commit 25**: Add widget integration to My Feeds
 - Allow adding widgets from other apps
 - Widget selection UI (minimal)
 - Arrange widgets in feed-style layout
@@ -234,12 +238,12 @@ void-minimalist-launcher/
 ### Phase 6: Gestures
 
 #### [NEW] Advanced Gesture System
-**Commit 24**: Implement custom gestures
+**Commit 26**: Implement custom gestures
 - Swipe left/right for quick actions
 - Pinch gestures (optional)
 - Long-press gestures
 
-**Commit 25**: Gesture configuration
+**Commit 27**: Gesture configuration
 - Text-based settings for gesture actions
 - Enable/disable gestures
 - Custom gesture mappings
@@ -265,14 +269,14 @@ void-minimalist-launcher/
 - Preference storage
 - Navigation
 
-**Commit 27**: Add launcher settings
+**Commit 29**: Add launcher settings
 - Set as default launcher option
 - Wallpaper & quote preferences (if implemented)
 - Theme preferences (OLED black vs dark gray)
 - Widget management for My Feeds (remove, reorder)
 - Reset options
 
-**Commit 28**: Polish UI/UX
+**Commit 30**: Polish UI/UX
 - Smooth fade animations
 - Loading states (minimal spinners or text)
 - Error states (simple text messages)
@@ -284,7 +288,7 @@ void-minimalist-launcher/
 ### Phase 8: Documentation & CI/CD
 
 #### [MODIFY] README.md
-**Commit 29**: Update documentation
+**Commit 31**: Update documentation
 - Feature list (smart search, My Feeds, wallpapers with quotes)
 - Design philosophy (minimalist, icon-less, distraction-free)
 - Screenshots
@@ -292,7 +296,7 @@ void-minimalist-launcher/
 - Permissions explanation
 
 #### [NEW] GitHub Actions
-**Commit 30**: Add CI/CD for release/alpha
+**Commit 32**: Add CI/CD for release/alpha
 - Build APK on push to release/alpha branch
 - Generate release artifacts
 - Auto-versioning
