@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:return_zero/core/theme/app_theme.dart';
+import 'package:return_zero/features/home/presentation/pages/home_page.dart';
+import 'package:return_zero/features/home/presentation/providers/home_settings_provider.dart';
 
 void main() {
-  runApp(const ReturnZeroApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeSettingsProvider()),
+      ],
+      child: const ReturnZeroApp(),
+    ),
+  );
 }
 
 class ReturnZeroApp extends StatelessWidget {
@@ -16,11 +26,7 @@ class ReturnZeroApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: Center(
-          child: Text('Return Zero'),
-        ),
-      ),
+      home: const HomePage(),
     );
   }
 }
