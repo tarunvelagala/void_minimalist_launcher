@@ -1,5 +1,6 @@
+import 'dart:io';
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:installed_apps/installed_apps.dart';
 import 'package:intl/intl.dart';
 
 class TimeDisplay extends StatelessWidget {
@@ -7,15 +8,13 @@ class TimeDisplay extends StatelessWidget {
   const TimeDisplay({super.key, required this.currentTime});
 
   Future<void> _openClock() async {
-    final packages = [
-      'com.google.android.deskclock',
-      'com.android.deskclock',
-      'com.sec.android.app.clockpackage',
-    ];
-    for (var p in packages) {
-      if (await InstalledApps.isAppInstalled(p) ?? false) {
-        await InstalledApps.startApp(p);
-        return;
+    if (Platform.isAndroid) {
+      const intent = AndroidIntent(action: 'android.intent.action.SHOW_ALARMS');
+      try {
+        await intent.launch();
+      } catch (e) {
+        const String errorMessage = 'Could not open clock app:';
+        debugPrint(errorMessage + e.toString());
       }
     }
   }
