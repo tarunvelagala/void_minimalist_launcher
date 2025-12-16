@@ -67,10 +67,8 @@ class _UsageStatsDisplayState extends State<UsageStatsDisplay>
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: _isWellbeingAvailable ? UsageUtils.openDigitalWellbeing : null,
-      splashColor: _isWellbeingAvailable ? null : Colors.transparent,
-      highlightColor: _isWellbeingAvailable ? null : Colors.transparent,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [

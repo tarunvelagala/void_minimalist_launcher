@@ -15,7 +15,7 @@ class DateDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: _openCalendar,
       child: Text(
         DateFormat('EEE, d MMM').format(currentTime),

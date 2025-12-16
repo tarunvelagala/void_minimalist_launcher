@@ -14,7 +14,7 @@ class BatteryDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: _openBatterySettings,
       child: Text(
         '$level%',
