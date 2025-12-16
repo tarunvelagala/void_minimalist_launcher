@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class StatsRow extends StatelessWidget {
+class Stat extends StatelessWidget {
   final String label;
   final String? value;
   final VoidCallback? onTap;
   final IconData? icon;
 
-  const StatsRow({
+  const Stat({
     super.key,
     required this.label,
     this.value,

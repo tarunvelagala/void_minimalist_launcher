@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:return_zero/features/home/presentation/providers/home_settings_provider.dart';
-import 'package:return_zero/features/home/presentation/widgets/clock_widget.dart';
-import 'package:return_zero/features/home/presentation/widgets/usage_stats_display.dart';
+import 'package:return_zero/features/home/presentation/widgets/chronos/chronos.dart';
+import 'package:return_zero/features/home/presentation/widgets/usage_stats/usage_stats.dart';
 import 'package:return_zero/features/settings/presentation/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: const [
-                          ClockWidget(),
+                          ClockBatteryWidget(),
                           Expanded(
                             child: Align(
                               alignment: Alignment.centerRight,

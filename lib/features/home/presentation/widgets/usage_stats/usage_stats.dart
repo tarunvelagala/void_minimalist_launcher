@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/features/home/domain/utils/usage_utils.dart';
-import 'package:return_zero/features/home/presentation/widgets/stats_row_widget.dart';
+import 'package:return_zero/features/home/presentation/widgets/usage_stats/stat.dart';
 
 class UsageStatsDisplay extends StatefulWidget {
   const UsageStatsDisplay({super.key});
@@ -59,12 +59,12 @@ class _UsageStatsDisplayState extends State<UsageStatsDisplay>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        StatsRow(label: 'Usage', value: _screenTime),
+        Stat(label: 'Usage', value: _screenTime),
         const SizedBox(height: 2),
-        StatsRow(label: 'Unlocks', value: _unlockCount.toString()),
+        Stat(label: 'Unlocks', value: _unlockCount.toString()),
         if (!_isPermissionGranted) ...[
           const SizedBox(height: 2),
-          StatsRow(label: 'Stats', onTap: UsageUtils.grantPermission),
+          Stat(label: 'Stats', onTap: UsageUtils.grantPermission),
         ],
       ],
     );
