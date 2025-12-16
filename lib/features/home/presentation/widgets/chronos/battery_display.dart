@@ -16,13 +16,7 @@ class BatteryDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: _openBatterySettings,
-      child: Text(
-        '$level%',
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.w300,
-          fontSize: 16,
-        ),
-      ),
+      child: Text('$level%', style: Theme.of(context).textTheme.titleLarge),
     );
   }
 }

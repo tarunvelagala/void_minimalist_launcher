@@ -31,18 +31,12 @@ class TimeDisplay extends StatelessWidget {
         children: [
           Text(
             DateFormat('h:mm').format(currentTime),
-            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-              fontWeight: FontWeight.w300,
-              fontSize: 48, // Slightly larger for emphasis
-            ),
+            style: Theme.of(context).textTheme.displayLarge,
           ),
           const SizedBox(width: 4),
           Text(
             DateFormat('a').format(currentTime),
-            style: Theme.of(context).textTheme.displayLarge?.copyWith(
-              fontWeight: FontWeight.w300,
-              fontSize: 32,
-            ),
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ],
       ),

@@ -58,13 +58,7 @@ class _ClockBatteryWidgetState extends State<ClockBatteryWidget> {
         Row(
           children: [
             DateDisplay(currentTime: _currentTime),
-            Text(
-              ', ',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w300,
-                fontSize: 16,
-              ),
-            ),
+            Text(', ', style: Theme.of(context).textTheme.titleLarge),
             BatteryDisplay(level: _batteryLevel),
           ],
         ),

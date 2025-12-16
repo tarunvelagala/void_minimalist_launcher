@@ -19,10 +19,7 @@ class DateDisplay extends StatelessWidget {
       onTap: _openCalendar,
       child: Text(
         DateFormat('EEE, d MMM').format(currentTime),
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-          fontWeight: FontWeight.w300,
-          fontSize: 16,
-        ),
+        style: Theme.of(context).textTheme.titleLarge,
       ),
     );
   }

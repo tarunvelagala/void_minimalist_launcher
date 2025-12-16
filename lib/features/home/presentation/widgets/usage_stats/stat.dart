@@ -21,25 +21,17 @@ class Stat extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          label,
-          style: theme.textTheme.bodySmall?.copyWith(color: theme.hintColor),
-        ),
+        Text(label, style: theme.textTheme.labelMedium),
         const SizedBox(width: 6),
 
         /// Value OR action
         if (value != null)
-          Text(
-            value!,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w300,
-            ),
-          )
+          Text(value!, style: theme.textTheme.titleMedium)
         else
           TextButton.icon(
             onPressed: onTap,
             icon: Icon(icon ?? Icons.security, size: 14),
-            label: Text('Enable', style: theme.textTheme.bodySmall),
+            label: Text('Enable', style: theme.textTheme.titleMedium),
             style: TextButton.styleFrom(
               padding: EdgeInsets.zero,
               minimumSize: Size.zero,
