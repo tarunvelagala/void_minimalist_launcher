@@ -19,10 +19,9 @@ class DateDisplay extends StatelessWidget {
       onTap: _openCalendar,
       child: Text(
         DateFormat('EEE, d MMM').format(currentTime),
-        style: const TextStyle(
-          fontSize: 16,
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w300,
-          color: Colors.white,
+          fontSize: 16,
         ),
       ),
     );

@@ -32,7 +32,7 @@ class Stat extends StatelessWidget {
           Text(
             value!,
             style: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w300,
             ),
           )
         else

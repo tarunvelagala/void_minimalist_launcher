@@ -14,12 +14,14 @@ class _UsageStatsDisplayState extends State<UsageStatsDisplay>
   int _unlockCount = 0;
   String _screenTime = '0m';
   bool _isPermissionGranted = false;
+  bool _isWellbeingAvailable = false;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     _checkAndFetchStats();
+    _checkWellbeingAvailability();
   }
 
   @override
@@ -54,19 +56,33 @@ class _UsageStatsDisplayState extends State<UsageStatsDisplay>
     }
   }
 
+  Future<void> _checkWellbeingAvailability() async {
+    bool available = await UsageUtils.isWellbeingAvailable();
+    if (mounted) {
+      setState(() {
+        _isWellbeingAvailable = available;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        Stat(label: 'Usage', value: _screenTime),
-        const SizedBox(height: 2),
-        Stat(label: 'Unlocks', value: _unlockCount.toString()),
-        if (!_isPermissionGranted) ...[
+    return InkWell(
+      onTap: _isWellbeingAvailable ? UsageUtils.openDigitalWellbeing : null,
+      splashColor: _isWellbeingAvailable ? null : Colors.transparent,
+      highlightColor: _isWellbeingAvailable ? null : Colors.transparent,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          Stat(label: 'Usage', value: _screenTime),
           const SizedBox(height: 2),
-          Stat(label: 'Stats', onTap: UsageUtils.grantPermission),
+          Stat(label: 'Unlocks', value: _unlockCount.toString()),
+          if (!_isPermissionGranted) ...[
+            const SizedBox(height: 2),
+            Stat(label: 'Stats', onTap: UsageUtils.grantPermission),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:installed_apps/installed_apps.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:return_zero/features/home/domain/models/usage_data_model.dart';
 
@@ -56,5 +57,19 @@ class UsageUtils {
       debugPrint('Error fetching usage stats: $e');
       return UsageDataModel(screenTime: '0m', unlockCount: 0);
     }
+  }
+
+  static Future<bool> isWellbeingAvailable() async {
+    const String package = 'com.google.android.apps.wellbeing';
+    try {
+      return await InstalledApps.isAppInstalled(package) ?? false;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  static Future<void> openDigitalWellbeing() async {
+    const String package = 'com.google.android.apps.wellbeing';
+    await InstalledApps.startApp(package);
   }
 }
