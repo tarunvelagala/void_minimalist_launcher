@@ -1,4 +1,4 @@
-# Void Launcher - Implementation Plan
+# Return Zero - Implementation Plan
 
 An ultra-minimalist, **icon-less**, distraction-free Flutter launcher focused on reducing phone usage through awareness and control.
 
@@ -10,7 +10,18 @@ An ultra-minimalist, **icon-less**, distraction-free Flutter launcher focused on
 - **Awareness First**: Prominent screen time and unlock count display
 - **Intentional Usage**: Friction through minimalism encourages mindful app usage
 
-## ✨ Feature Highlights
+## 🎯 MVP Features (Current Scope)
+
+### 🏠 Minimalist Home Screen
+- Large clock display (top-left)
+- Usage stats display (top-right) - tap to open Digital Wellbeing
+- Swipe-up gesture for app drawer
+- Swipe-left gesture for opening specific app and it's selection in settings, default is camera
+- Swipe-right gesture for opening specific app its selection in settings, default is phone
+- If the app is lauched for the first time, show the instructions at the bottom of the screen i.e long press to open settings and swipe up for all apps. 
+- if any any gesture is done then the instructions would be removed.
+- Enable long press on the app in homescreen to make a selection of any other app from the app list.
+- The app list on the home screen would be Placeholder in initial phase and on click it should make a toast "Long Press to select the App". 
 
 ### 🔍 Smart 3-Letter App Launcher
 - Auto-open keyboard when app drawer appears
@@ -18,20 +29,42 @@ An ultra-minimalist, **icon-less**, distraction-free Flutter launcher focused on
 - If 2+ matches → show filtered list
 - Example: "gma" → Gmail opens automatically
 
-### 📊 My Feeds - Widget Dashboard
-- Floating button on home screen
-- Slide-up panel with:
-  - Usage statistics (unlock count, screen time)
-  - Top apps breakdown (text-only)
-  - Custom widgets from other apps (calendar, weather, notes)
-- **Drag-and-drop to organize**: Reorder widgets and stats cards
-- All in a minimal, feed-style layout
+### 📊 Usage Tracking & Awareness
+- Real-time unlock count
+- Daily screen time tracking
+- Tap to open Digital Wellbeing for detailed stats
 
-### 🖼️ Minimal Wallpapers with Quotes **(Optional)**
+### 📱 App Management
+- Text-only app list (no icons)
+
+## 🚀 Future Enhancements
+
+### At a glance widget
+- "At a Glance" placeholder widget for upcoming events
+
+### Feeds Screen Widgets
+- Google Calendar integration
+- Habit tracker (GitHub contribution style)
+- Add more apps widgets
+- Drag-and-drop to reorder widgets
+
+### App & Website Blocker
+- Block apps and websites that user specified in settings
+
+### Notification Blocker & History
+- Block notifications of that apps that user specified in settings.
+- Show notification history
+
+### 🎨 Wallpaper & Customization
 - Curated minimal wallpapers (dark, nature, abstract)
 - Motivating quotes overlay
 - Daily quote rotation
 - Fully customizable in settings
+
+### ✍️ Advanced Gestures
+- Draw custom gestures (e.g., draw "F" for Feeds)
+- Configurable gesture actions
+- Gesture recording in settings
 
 ## User Review Required
 
@@ -48,266 +81,416 @@ An ultra-minimalist, **icon-less**, distraction-free Flutter launcher focused on
 > [!NOTE]
 > **Flutter Version**: The project will use the latest stable Flutter SDK. Please ensure Flutter is installed on your system.
 
+---
+
 ## Proposed Changes
 
-### Phase 1: Project Foundation
+### Phase 1: Project Foundation & Setup
 
-#### [NEW] Flutter Project Structure
-Initialize Flutter project with proper package structure:
-```
-void-minimalist-launcher/
-├── lib/
-│   ├── main.dart
-│   ├── core/
-│   │   ├── constants/
-│   │   ├── theme/
-│   │   └── utils/
-│   ├── features/
-│   │   ├── home/
-│   │   ├── app_drawer/
-│   │   ├── app_blocking/
-│   │   ├── notification_blocking/
-│   │   ├── usage_stats/
-│   │   └── gestures/
-│   ├── services/
-│   └── widgets/
-├── android/
-├── pubspec.yaml
-└── README.md
-```
-
-**Commit 1**: Initialize Flutter project
+#### Commit 1.1: Initialize Flutter Project
 - Run `flutter create --org com.vtkr --project-name return_zero .`
 - Clean up default counter app code
+- Set up basic folder structure:
+  ```
+  lib/
+  ├── main.dart
+  ├── core/
+  │   ├── constants/
+  │   ├── theme/
+  │   └── utils/
+  ├── features/
+  └── services/
+  ```
 
-**Commit 2**: Configure Android manifest for launcher
+#### Commit 1.2: Configure Android Launcher Manifest
 - Modify `android/app/src/main/AndroidManifest.xml`
-- Add launcher intent filters
-- Set required permissions
+- Add launcher intent filters to make app appear as launcher option
+- Add basic permissions structure (will be expanded later)
 
-**Commit 3**: Add core dependencies
-- Add `pubspec.yaml` dependencies:
+#### Commit 1.3: Add Core Dependencies
+- Update `pubspec.yaml` with essential dependencies:
   - `device_apps` - App management
   - `usage_stats` - Screen time tracking
   - `shared_preferences` - Settings storage
   - `provider` - State management
+  - `intl` - Date/time formatting
 
 ---
 
-### Phase 2: Core UI Framework
+### Phase 2: Home Screen - Core UI
 
-#### [NEW] Ultra-Minimalist Theme System
-**Commit 4**: Create distraction-free theme
-- Monochrome color palette (dark background, white/gray text)
-- Clean sans-serif typography (large, readable)
-- OLED-friendly dark theme
+> **Screen Focus**: Home Screen (Main Launcher Screen)
+
+#### Commit 2.1: Create Minimalist Theme System
+**Files**: `lib/core/theme/app_theme.dart`, `lib/core/theme/app_colors.dart`
+- Monochrome color palette (OLED-friendly dark background, white/gray text)
+- Clean sans-serif typography with large, readable sizes
 - No colors, no gradients - pure minimalism
+- Define text styles for clock, stats, and general UI
 
-#### [NEW] Home Screen Layout
-**Commit 5**: Implement home screen with large clock
-- Large time display (primary focus, like 8:11)
-- **No app icons or shortcuts** - truly minimal
+#### Commit 2.2: Implement Basic Home Screen Layout
+**Files**: `lib/features/home/presentation/pages/home_page.dart`
+- Create scaffold with dark background
+- Add large time display (e.g., "8:11") as primary focus
+- Add date display and battery percentage below time.
+- No app icons or shortcuts - truly minimal
+- Basic layout structure only (no functionality yet)
 
-**Commit 6**: Update the alignment of home screen.
-- We have to place the clock and date in the top left corner of the screen.
-- Usage Stats should be in the top right corner of the screen.
-- The remaining space is a placeholder for the home app.
+#### Commit 2.3: Add Battery Percentage Display
+**Files**: `lib/features/home/presentation/widgets/clock_widget.dart`
+- Add battery percentage below date
+- Use `battery_plus` package to get battery level
+- Format as "XX%" in minimal style
+- Update in real-time
 
-**Commit 7**: Add wallpaper support
-- Wallpaper support
+#### Commit 2.4: Position Clock Widget (Top Left)
+**Files**: `lib/features/home/presentation/widgets/clock_widget.dart`, `lib/features/home/presentation/pages/home_page.dart`
+- Extract clock, date, and battery into reusable widget
+- Position in top-left corner of screen
+- Implement real-time clock updates using `Timer`
+- Format time and date using `intl` package
 
-**Commit 8**: Add prominent screen time indicator
-- Screen time widget at top ("1h 12m" format)
-- Tap to see detailed usage stats
-- Today's unlock count display
+#### Commit 2.5: Add Usage Stats Display (Top Right)
+**Files**: `lib/features/home/presentation/widgets/usage_stats_display.dart`
+- Create usage stats widget (placeholder data for now)
+- Display unlock count and screen time
+- Position in top-right corner
+- Center-align text/icons within the widget
 
-**Commit 9**: [OPTIONAL] Add minimal wallpaper selector with quotes
-- Curated minimal wallpapers (dark, nature, abstract)
-- Motivating quotes overlay
-- Daily quote rotation
-- Fully customizable in settings
+#### Commit 2.6: Integrate Digital Wellbeing Tap Action
+**Files**: `lib/features/home/presentation/widgets/usage_stats_display.dart`, `lib/services/digital_wellbeing_service.dart`
+- Add tap gesture detector to usage stats widget
+- Create service to launch Digital Wellbeing app
+- Handle cases where Digital Wellbeing is not available
+- Provide fallback to system usage settings
 
-**Commit 10**: Add gesture detection framework
-- Swipe up for app drawer (with auto-keyboard)
-- Swipe down for quick settings
-- Floating button for My Feeds
+#### Commit 2.7: Add Basic Swipe Gesture Detection
+**Files**: `lib/features/home/presentation/pages/home_page.dart`
+- Implement `GestureDetector` for swipe gestures
+- Swipe up → App drawer (to be implemented)
+- Swipe down → Notifications panel (system)
+
+#### Commit 2.8: Implement Swipe-Left/Right Quick App Launch
+**Files**: `lib/features/home/presentation/pages/home_page.dart`, `lib/services/quick_launch_service.dart`
+- Detect swipe-left and swipe-right gestures
+- Create service to store and retrieve configured apps for each swipe direction
+- **Set default apps**: Camera (swipe-left), Phone (swipe-right)
+- Launch configured app on swipe gesture
+- Handle cases where app is not installed
+- Smooth launch animations
+
+#### Commit 2.9: Add Home Screen App Placeholder
+**Files**: `lib/features/home/presentation/widgets/home_app_placeholder.dart`
+- Create placeholder widget for center of home screen
+- Display text like "My App" or app name if configured
+- Add tap gesture with toast: "Long Press to select the App"
+- Minimal, text-based design
+
+#### Commit 2.10: Implement Long-Press App Selection
+**Files**: `lib/features/home/presentation/widgets/home_app_placeholder.dart`, `lib/features/home/presentation/pages/app_picker_page.dart`
+- Detect long-press gesture on home screen placeholder
+- Open app picker (text-only list of all apps)
+- Save selected app to preferences
+- Update placeholder to show selected app name
+- Tap to launch selected app
+
+#### Commit 2.11: Add First-Time Instructions
+**Files**: `lib/features/home/presentation/widgets/instructions_widget.dart`, `lib/services/onboarding_service.dart`
+- Check if app is launched for the first time
+- Display instructions at bottom: "Long press to open settings and swipe up for all apps"
+- Minimal, subtle text display
+- Remove instructions after any gesture (swipe, long-press, tap)
+- Store instruction dismissal state in preferences
 
 ---
 
-### Phase 3: App Management
+### Phase 3: App Drawer Screen
 
-#### [NEW] Text-Only App Drawer with Smart Search
-**Commit 11**: Create app list service
-- Query installed apps
-- Filter system apps
+> **Screen Focus**: App Drawer (Swipe-up from Home)
+
+#### Commit 3.1: Create App List Service
+**Files**: `lib/services/app_service.dart`
+- Query installed apps using `device_apps` package
+- Filter out system apps
 - Sort alphabetically (A-Z)
-- **No icon loading** - text names only
-- Fuzzy search algorithm for quick matching
+- Return list of app names (no icons)
+- Implement fuzzy search algorithm for smart matching
 
-**Commit 12**: Build icon-less app drawer UI with auto-keyboard
-- Simple vertical text list (app names)
-- Clean, monospace or sans-serif font
-- Ample spacing between items
+#### Commit 3.2: Build Text-Only App Drawer UI with First-Time Tip
+**Files**: `lib/features/app_drawer/presentation/pages/app_drawer_page.dart`
+- Simple vertical scrollable list of app names
+- Clean, sans-serif font with ample spacing
 - No icons, no colors - pure text
-- **Auto-open keyboard** when app drawer opens
+- Slide-up animation from home screen
+- **First-time tip**: Show "Start typing an app name to auto launch it" on first launch
+- Dismiss tip after user starts typing
 
-**Commit 13**: Implement smart 3-letter app launch
-- If user types 3 letters and only ONE app matches → auto-launch
+#### Commit 3.3: Auto-Open Keyboard on Drawer Open
+**Files**: `lib/features/app_drawer/presentation/pages/app_drawer_page.dart`
+- Add search text field at top
+- Auto-focus and open keyboard when drawer appears
+- Implement real-time filtering as user types
+
+#### Commit 3.4: Implement Smart 3-Letter Auto-Launch
+**Files**: `lib/features/app_drawer/presentation/pages/app_drawer_page.dart`
+- If user types 3 letters and only ONE app matches → auto-launch immediately
 - If 2+ apps match → show filtered list
-- Real-time filtering as user types
-- Smart matching (e.g., "gma" → Gmail)
+- Smart matching logic (e.g., "gma" → Gmail)
 
-**Commit 14**: Implement app launch
-- Tap on app name to launch
-- Smooth transitions
-- Error handling
-
-#### [NEW] App Blocking Feature
-**Commit 15**: Create app blocking service
-- Store blocked apps list
-- Check if app is blocked before launch
-- Show subtle warning when attempting to launch
-
-**Commit 16**: Add minimal app blocking UI
-- Long-press on app name to block/unblock
-- Dimmed text or strikethrough for blocked apps
-- Settings screen for blocked apps list
-- No popups - keep it minimal
+#### Commit 3.5: Implement App Launch Functionality
+**Files**: `lib/services/app_service.dart`
+- Launch app by package name
+- Handle launch errors gracefully
+- Smooth transition animations
+- Close drawer after launch
 
 ---
 
-### Phase 4: Notification Management
+### Phase 4: Usage Statistics & Tracking
 
-#### [NEW] Notification Listener Service
-**Commit 17**: Create notification listener
-- Implement `NotificationListenerService`
-- Request notification access permission
-- Basic notification interception
+> **Screen Focus**: Home Screen (Usage Stats Widget) + Feeds Screen
 
-**Commit 18**: Implement notification blocking
-- Block notifications from specific apps
-- Store blocked notification apps
-- Permission request UI (minimal)
+#### Commit 4.1: Request Usage Stats Permission
+**Files**: `lib/services/usage_stats_service.dart`
+- Check for usage stats permission
+- Request permission with minimal UI
+- Redirect to system settings if needed
 
-**Commit 19**: Notification settings UI
-- Text-only list of apps with notification access
-- Toggle notification blocking per app
-- Minimal visual feedback
-
----
-
-### Phase 5: Usage Tracking & My Feeds
-
-#### [NEW] Usage Statistics Service
-**Commit 20**: Request usage stats permission
-- Permission check and request
-- Settings redirect UI (minimal)
-
-**Commit 21**: Implement unlock count tracker
+#### Commit 4.2: Implement Unlock Count Tracker
+**Files**: `lib/services/usage_stats_service.dart`
 - Track screen unlock events
-- Store daily count
-- Reset at midnight
+- Store daily count in preferences
+- Reset count at midnight
+- Provide unlock count to UI
 
-**Commit 22**: Implement screen time tracker
-- Query usage stats API
+#### Commit 4.3: Implement Screen Time Tracker
+**Files**: `lib/services/usage_stats_service.dart`
+- Query Android usage stats API
 - Calculate daily screen time
-- Per-app usage stats
+- Format time (e.g., "1h 12m")
 
-#### [NEW] My Feeds Screen - Widget Dashboard
-**Commit 23**: Create floating "My Feeds" button
-- Floating action button (minimal, subtle)
-- Shows on home screen
-- Slide-up panel animation
-
-**Commit 24**: Build My Feeds screen UI with drag-and-drop
-- Usage stats section (unlock count, screen time) as cards
-- Text-only breakdown of top apps
-- Today's usage list (sorted by time)
-- **Drag-and-drop support**: Long-press and drag to reorder cards
-- Smooth reordering animations
-- **No graphs or fancy charts** - just the numbers
-
-**Commit 25**: Add widget integration to My Feeds
-- Allow adding widgets from other apps
-- Widget selection UI (minimal)
-- Arrange widgets in feed-style layout
-- **Drag to reorder widgets** within the feed
-- Support common widgets (calendar, weather, notes, etc.)
-- Persist widget order in preferences
+#### Commit 4.4: Connect Usage Stats to Home Screen Widget
+**Files**: `lib/features/home/presentation/widgets/usage_stats_display.dart`
+- Display real unlock count and screen time
+- Update in real-time
+- Handle permission denied state gracefully
 
 ---
 
-### Phase 6: Gestures
+### Phase 5: Settings Screen
 
-#### [NEW] Advanced Gesture System
-**Commit 26**: Implement custom gestures
-- Swipe left/right for quick actions
-- Pinch gestures (optional)
-- Long-press gestures
+> **Screen Focus**: Settings Screen
 
-**Commit 27**: Gesture configuration
-- Text-based settings for gesture actions
-- Enable/disable gestures
-- Custom gesture mappings
+#### Commit 5.1: Create Main Settings Page
+**Files**: `lib/features/settings/presentation/pages/settings_page.dart`
+- Navigation from home screen (long-press or dedicated gesture)
+- List of settings categories:
+  - Quick Launch Apps (Swipe Gestures)
+  - Home Screen App
+  - Theme Preferences
+  - About & Reset
 
----
+#### Commit 5.2: Add Swipe Gesture App Configuration
+**Files**: `lib/features/settings/presentation/pages/settings_page.dart`
+- Section to configure swipe-left app (default: Camera)
+- Section to configure swipe-right app (default: Phone)
+- App picker UI (text-only list)
+- Save selections to preferences
+- Clear/reset gesture app assignments
 
-### Phase 7: Polish & Settings
+#### Commit 5.3: Add Home Screen App Configuration
+**Files**: `lib/features/settings/presentation/pages/settings_page.dart`
+- Section to configure center home screen app
+- Same app picker UI as swipe gestures
+- Save selection to preferences
+- Clear/reset option
 
-#### [NEW] [feeds_page.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/feeds/presentation/pages/feeds_page.dart)
-- **Purpose**: View historic usage stats and add widgets (habit tracker, pomo, etc.).
-- **Layout**: Scaffold with "Feeds" title for now.
-- **Interaction**: Accessed by tapping `UsageStatsDisplay`.
-
-#### [MODIFY] [usage_stats_display.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/home/presentation/widgets/usage_stats_display.dart)
-- **Components**:
-    - Unlock Count and Screen Time.
-- **Layout**:
-    - `Column` with `CrossAxisAlignment.center` (Text/Icons centered relative to each other).
-- **Interaction**:
-    - **Tap**: Navigates to `FeedsPage`.
-
-#### [NEW] [settings_page.dart](file:///Users/C5404787/workplace/personal/return_zero/lib/features/settings/presentation/pages/settings_page.dart)
-- Preference storage
-- Navigation
-
-**Commit 29**: Add launcher settings
+#### Commit 5.4: Add Launcher Settings
+**Files**: `lib/features/settings/presentation/pages/launcher_settings_page.dart`
 - Set as default launcher option
-- Wallpaper & quote preferences (if implemented)
 - Theme preferences (OLED black vs dark gray)
-- Widget management for My Feeds (remove, reorder)
-- Reset options
+- Reset all settings option
+- Reset instructions/tips option
 
-**Commit 30**: Polish UI/UX
-- Smooth fade animations
-- Loading states (minimal spinners or text)
-- Error states (simple text messages)
-- Empty states ("No apps found")
-- Keyboard auto-show/hide smoothness
+
 
 ---
 
-### Phase 8: Documentation & CI/CD
+### Phase 6: Polish & UX Improvements
 
-#### [MODIFY] README.md
-**Commit 31**: Update documentation
+#### Commit 6.1: Add Smooth Animations
+**Files**: Various
+- Fade animations for screen transitions
+- Slide animations for drawer and feeds
+- Smooth keyboard show/hide
+- Micro-animations for interactions
+
+#### Commit 6.2: Implement Loading & Error States
+**Files**: Various
+- Minimal loading spinners or text ("Loading...")
+- Error states with simple text messages
+- Empty states ("No apps found", "No events today")
+- Permission denied states
+
+#### Commit 6.3: Optimize Performance
+**Files**: Various
+- Lazy loading for app list
+- Efficient usage stats queries
+- Minimize rebuilds with proper state management
+- Test on low-end devices
+
+---
+
+### Phase 7: Documentation & CI/CD
+
+#### Commit 7.1: Update README
+**Files**: `README.md`
 - Feature list (smart search, My Feeds, wallpapers with quotes)
 - Design philosophy (minimalist, icon-less, distraction-free)
-- Screenshots
+- Screenshots of each screen
 - Setup instructions
 - Permissions explanation
 
-#### [NEW] GitHub Actions
-**Commit 32**: Add CI/CD for release/alpha
-- Build APK on push to release/alpha branch
+#### Commit 7.2: Add CI/CD for Release/Alpha
+**Files**: `.github/workflows/build.yml`
+- Build APK on push to `release` or `alpha` branch
 - Generate release artifacts
-- Auto-versioning
+- Auto-versioning based on git tags
+- Upload to GitHub Releases
+
+---
+
+## 🔮 Future Enhancements Implementation
+
+> **Note**: These features will be implemented after the MVP is complete and tested.
+
+### Phase F1: App & Notification Blocking
+
+> **Screen Focus**: App Drawer + Settings + Background Service
+
+#### Commit F1.1: Create App Blocking Service
+**Files**: `lib/services/app_blocking_service.dart`
+- Store blocked apps list in `shared_preferences`
+- Check if app is blocked before launch
+- Provide methods to block/unblock apps
+
+#### Commit F1.2: Add Blocking UI to App Drawer
+**Files**: `lib/features/app_drawer/presentation/pages/app_drawer_page.dart`
+- Long-press on app name to block/unblock
+- Show dimmed text or strikethrough for blocked apps
+- Display subtle warning when attempting to launch blocked app
+- No popups - keep it minimal
+
+#### Commit F1.3: Add Blocked Apps Settings Screen
+**Files**: `lib/features/settings/presentation/pages/blocked_apps_settings_page.dart`
+- List all blocked apps
+- Toggle to unblock apps
+- Text-only minimal UI
+
+#### Commit F1.4: Create Notification Listener Service
+**Files**: `android/app/src/main/kotlin/.../NotificationListenerService.kt`
+- Implement Android `NotificationListenerService`
+- Request notification access permission
+- Basic notification interception
+
+#### Commit F1.5: Implement Notification Blocking Logic
+**Files**: `lib/services/notification_service.dart`
+- Block notifications from specific apps
+- Store blocked notification apps in preferences
+- Communicate with native Android service
+
+#### Commit F1.6: Add Notification Settings UI
+**Files**: `lib/features/settings/presentation/pages/notification_settings_page.dart`
+- Text-only list of apps with notification toggle
+- Request notification access permission
+- Minimal visual feedback
+
+#### Commit F1.7: Implement Notification History
+**Files**: `lib/features/settings/presentation/pages/notification_history_page.dart`
+- Display history of blocked/dismissed notifications
+- Show notification timestamp and app source
+- Clear history option
+- Minimal text-based UI
+
+---
+
+### Phase F2: Wallpaper & Quote System
+
+> **Screen Focus**: Home Screen (Background) + Settings
+
+#### Commit F1.1: Add Wallpaper Support to Home Screen
+**Files**: `lib/features/home/presentation/widgets/wallpaper_background.dart`
+- Implement background image support
+- Default to solid dark color
+- Load wallpaper from assets or storage
+- Ensure text remains readable over wallpaper
+
+#### Commit F1.2: Add Curated Wallpaper Assets
+**Files**: `assets/wallpapers/`
+- Add 10-15 minimal wallpapers (dark, nature, abstract)
+- Optimize for mobile screens
+- OLED-friendly dark images
+
+#### Commit F1.3: Implement Quote Overlay System
+**Files**: `lib/features/home/presentation/widgets/quote_overlay_widget.dart`
+- Load motivating quotes from JSON file
+- Display quote over wallpaper
+- Daily rotation logic
+- Ensure text readability
+
+#### Commit F1.4: Add Wallpaper & Quote Settings
+**Files**: `lib/features/settings/presentation/pages/wallpaper_settings_page.dart`
+- Select from curated minimal wallpapers
+- Enable/disable quote overlay
+- Daily quote rotation toggle
+- Preview wallpaper
+
+#### Commit F1.5: Connect Wallpaper Settings to Home Screen
+**Files**: `lib/features/home/presentation/pages/home_page.dart`
+- Load selected wallpaper from preferences
+- Apply quote overlay if enabled
+- Handle wallpaper changes dynamically
+
+---
+
+### Phase F3: Advanced Gesture System
+
+> **Screen Focus**: Home Screen + Settings
+
+#### Commit F2.1: Add Gesture Drawing Library
+**Files**: `pubspec.yaml`, `lib/features/gestures/gesture_recognizer.dart`
+- Add `one_dollar_unistroke_recognizer` package
+- Create gesture recognition service
+- Set up gesture storage in preferences
+
+#### Commit F2.2: Implement Custom Gesture Drawing
+**Files**: `lib/features/gestures/gesture_recognizer.dart`, `lib/features/home/presentation/pages/home_page.dart`
+- Recognize drawn gestures on home screen
+- Support gestures like drawing "F" for Feeds
+- Navigate to target screen on gesture match
+- Visual feedback during drawing
+
+#### Commit F2.3: Add Gesture Recording UI
+**Files**: `lib/features/settings/presentation/pages/gesture_settings_page.dart`
+- Record custom gestures in settings
+- Assign gestures to actions (open Feeds, open specific app, etc.)
+- Test and preview recorded gestures
+- Delete/edit existing gestures
+
+#### Commit F2.4: Add Gesture Configuration Options
+**Files**: `lib/features/settings/presentation/pages/gesture_settings_page.dart`
+- Enable/disable gesture system
+- Adjust gesture sensitivity
+- Manage gesture-to-action mappings
+- Text-based minimal UI
 
 ---
 
 ## Design Reference
 
 ![User's Design Reference](/Users/C5404787/.gemini/antigravity/brain/dd8a10e6-d6b1-415d-9c54-301ec4877f9c/uploaded_image_1765648612701.jpg)
+
+---
 
 ## Verification Plan
 
