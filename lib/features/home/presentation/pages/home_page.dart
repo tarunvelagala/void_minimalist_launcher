@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: const [
-                          ClockBatteryWidget(),
+                          Chronos(),
                           Expanded(
                             child: Align(
                               alignment: Alignment.centerRight,
