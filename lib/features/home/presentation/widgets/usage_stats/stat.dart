@@ -9,7 +9,7 @@ class Stat extends StatelessWidget {
   const Stat({
     super.key,
     required this.label,
-    this.value,
+    required this.value,
     this.onTap,
     this.icon,
   });
@@ -23,21 +23,7 @@ class Stat extends StatelessWidget {
       children: [
         Text(label, style: theme.textTheme.labelMedium),
         const SizedBox(width: 6),
-
-        /// Value OR action
-        if (value != null)
-          Text(value!, style: theme.textTheme.titleMedium)
-        else
-          TextButton.icon(
-            onPressed: onTap,
-            icon: Icon(icon ?? Icons.security, size: 14),
-            label: Text('Enable', style: theme.textTheme.titleMedium),
-            style: TextButton.styleFrom(
-              padding: EdgeInsets.zero,
-              minimumSize: Size.zero,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-          ),
+        Text(value!, style: theme.textTheme.titleMedium),
       ],
     );
   }

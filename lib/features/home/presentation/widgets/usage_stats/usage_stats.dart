@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/features/home/domain/utils/usage_utils.dart';
 import 'package:return_zero/features/home/presentation/widgets/usage_stats/stat.dart';
+import 'package:return_zero/features/home/presentation/widgets/usage_stats/usage_permissions.dart';
 
 class UsageStatsDisplay extends StatefulWidget {
   const UsageStatsDisplay({super.key});
@@ -72,13 +73,12 @@ class _UsageStatsDisplayState extends State<UsageStatsDisplay>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Stat(label: 'Usage', value: _screenTime),
-          const SizedBox(height: 2),
-          Stat(label: 'Unlocks', value: _unlockCount.toString()),
-          if (!_isPermissionGranted) ...[
+          if (_isPermissionGranted) ...[
+            Stat(label: 'Usage', value: _screenTime),
             const SizedBox(height: 2),
-            Stat(label: 'Stats', onTap: UsageUtils.grantPermission),
-          ],
+            Stat(label: 'Unlocks', value: _unlockCount.toString()),
+          ] else
+            UsagePermissions(onTap: UsageUtils.grantPermission),
         ],
       ),
     );
