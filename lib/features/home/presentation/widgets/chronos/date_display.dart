@@ -1,5 +1,7 @@
+import 'dart:io';
+
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
-import 'package:installed_apps/installed_apps.dart';
 import 'package:intl/intl.dart';
 
 class DateDisplay extends StatelessWidget {
@@ -7,9 +9,18 @@ class DateDisplay extends StatelessWidget {
   const DateDisplay({super.key, required this.currentTime});
 
   Future<void> _openCalendar() async {
-    const package = 'com.google.android.calendar';
-    if (await InstalledApps.isAppInstalled(package) ?? false) {
-      await InstalledApps.startApp(package);
+    if (Platform.isAndroid) {
+      final intent = AndroidIntent(
+        action: 'android.intent.action.VIEW',
+        data:
+            'content://com.android.calendar/time/${DateTime.now().millisecondsSinceEpoch}',
+      );
+
+      try {
+        await intent.launch();
+      } catch (e) {
+        debugPrint("Could not open calendar: $e");
+      }
     }
   }
 

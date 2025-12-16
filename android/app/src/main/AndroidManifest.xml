@@ -48,8 +48,14 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
-                <intent>
+        <!-- Required to open alarms -->
+        <intent>
             <action android:name="android.intent.action.SHOW_ALARMS"/>
+        </intent>
+        <!-- Required to open calendar -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="content" android:host="com.android.calendar" />
         </intent>
     </queries>
 </manifest>
