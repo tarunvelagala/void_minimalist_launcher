@@ -18,6 +18,12 @@ class Constants {
   // Layout Paddings
   static const double mobileHorizontalPadding = 24.0;
   static const double tabletHorizontalPadding = 64.0;
+
+  // Vertical Padding (Height control)
+  static const double mobileVerticalPadding = 24.0;
+  static const double tabletVerticalPadding =
+      64.0; // Extra breathing room for tablets
+
   static const double topMargin = 16.0;
   static const double bottomMargin = 40.0;
 
