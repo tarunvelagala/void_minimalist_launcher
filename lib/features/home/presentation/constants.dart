@@ -1,4 +1,20 @@
 class Constants {
+  // Chronos Widget Constants
+
+  // Spacing
+  static const double chronosVerticalSpacing = 2.0;
+
+  // Durations
+  static const Duration clockUpdateInterval = Duration(minutes: 1);
+
+  // Nomos Widget Constants
+
+  // Spacing
+  static const double nomosVerticalSpacing = 12.0;
+  static const double nomosStatHorizontalSpacing = 4.0;
+
+  // Homepage Constants
+
   // Layout Paddings
   static const double mobileHorizontalPadding = 24.0;
   static const double tabletHorizontalPadding = 64.0;

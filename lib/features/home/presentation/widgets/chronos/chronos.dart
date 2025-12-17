@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:return_zero/features/home/presentation/constants.dart';
 import 'package:return_zero/features/home/presentation/widgets/chronos/date_display.dart';
 import 'package:return_zero/features/home/presentation/widgets/chronos/time_display.dart';
 
@@ -20,7 +21,7 @@ class _ChronosState extends State<Chronos> {
     _currentTime = DateTime.now();
 
     // Parent manages the shared timer
-    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
+    _timer = Timer.periodic(Constants.clockUpdateInterval, (timer) {
       if (mounted) setState(() => _currentTime = DateTime.now());
     });
   }
@@ -37,7 +38,7 @@ class _ChronosState extends State<Chronos> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TimeDisplay(currentTime: _currentTime),
-        const SizedBox(height: 4),
+        const SizedBox(height: Constants.chronosVerticalSpacing),
         DateDisplay(currentTime: _currentTime),
       ],
     );

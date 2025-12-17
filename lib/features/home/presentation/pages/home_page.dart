@@ -4,6 +4,7 @@ import 'package:return_zero/features/home/presentation/constants.dart';
 import 'package:return_zero/features/home/presentation/providers/home_settings_provider.dart';
 import 'package:return_zero/features/home/presentation/utils/alignment_utils.dart';
 import 'package:return_zero/features/home/presentation/widgets/chronos/chronos.dart';
+import 'package:return_zero/features/home/presentation/widgets/nomos/nomos.dart';
 import 'package:return_zero/features/settings/presentation/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Chronos(), // Left Widget
-                            // Right Widget
+                            Nomos(), // Right Widget
                           ],
                         ),
 
