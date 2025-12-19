@@ -23,17 +23,7 @@ class MyApp extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: Colors.black,
-        colorScheme: const ColorScheme.dark(
-          primary: Colors.white,
-          secondary: Colors.white70,
-          surface: Colors.black,
-        ),
-        textTheme: AppTypography.textTheme,
-        useMaterial3: true,
-      ),
+      theme: ThemeData(textTheme: AppTypography.textTheme, useMaterial3: true),
       home: const Placeholder(),
     );
   }
