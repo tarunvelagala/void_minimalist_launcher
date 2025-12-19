@@ -44,9 +44,9 @@ class AppLayout {
   static int headerFlex(BuildContext context) => ResponsiveValue<int>(
     context,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 20),
-      const Condition.equals(name: TABLET, value: 20),
-      const Condition.largerThan(name: TABLET, value: 20),
+      const Condition.equals(name: MOBILE, value: 15),
+      const Condition.equals(name: TABLET, value: 15),
+      const Condition.largerThan(name: TABLET, value: 15),
     ],
   ).value;
   static int appsFlex(BuildContext context) => ResponsiveValue<int>(
@@ -63,6 +63,15 @@ class AppLayout {
       const Condition.equals(name: MOBILE, value: 10),
       const Condition.equals(name: TABLET, value: 10),
       const Condition.largerThan(name: TABLET, value: 10),
+    ],
+  ).value;
+
+  static int glanceFlex(BuildContext context) => ResponsiveValue<int>(
+    context,
+    conditionalValues: [
+      const Condition.equals(name: MOBILE, value: 5),
+      const Condition.equals(name: TABLET, value: 5),
+      const Condition.largerThan(name: TABLET, value: 5),
     ],
   ).value;
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
+import 'package:return_zero/features/home/widgets/glance/glance_section.dart';
 import 'widgets/header/home_header_section.dart';
 import 'widgets/home_apps.dart';
 import 'widgets/onboarding/onboarding_section.dart';
@@ -26,6 +27,7 @@ class _HomepageState extends State<Homepage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   HomeHeaderSection(),
+                  GlanceSection(),
                   HomeApps(),
                   OnboardingSection(),
                 ],
