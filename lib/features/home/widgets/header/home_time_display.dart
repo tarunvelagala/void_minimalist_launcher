@@ -6,6 +6,6 @@ class HomeTimeDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("12: 40 PM", style: AppTypography.displayLarge);
+    return Text("12:40", style: AppTypography.displayLarge(context));
   }
 }

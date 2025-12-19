@@ -12,7 +12,17 @@ class App extends StatelessWidget {
       title: 'Return Zero',
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
-        child: child!,
+        child: Builder(
+          builder: (context) {
+            final brightness = MediaQuery.of(context).platformBrightness;
+            return Theme(
+              data: brightness == Brightness.dark
+                  ? AppTheme.dark(context)
+                  : AppTheme.light(context),
+              child: child!,
+            );
+          },
+        ),
         breakpoints: [
           const Breakpoint(start: 0, end: 450, name: MOBILE),
           const Breakpoint(start: 451, end: 800, name: TABLET),
@@ -20,8 +30,6 @@ class App extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       home: const AppLauncher(),
     );

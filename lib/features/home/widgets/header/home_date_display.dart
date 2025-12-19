@@ -6,6 +6,6 @@ class HomeDateDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Fri, 19 Dec 2025", style: AppTypography.headlineMedium);
+    return Text("Fri, 19 Dec", style: AppTypography.displaySmall(context));
   }
 }

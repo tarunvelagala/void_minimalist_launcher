@@ -3,35 +3,36 @@ import 'app_typography.dart';
 import 'app_colors.dart';
 
 class AppTheme {
-  static ThemeData get lightTheme => ThemeData(
-    brightness: Brightness.light,
-    scaffoldBackgroundColor: Colors.transparent,
-    colorScheme: const ColorScheme.light(
-      primary: AppColors.lightPrimary,
-      secondary: AppColors.lightSecondary,
-      surface: AppColors.lightSurface,
-      onSurface: AppColors.lightOnSurface,
-    ),
-    textTheme: AppTypography.textTheme.apply(
-      bodyColor: AppColors.lightPrimary,
-      displayColor: AppColors.lightPrimary,
-    ),
-    useMaterial3: true,
-  );
+  static ThemeData light(BuildContext context) =>
+      _theme(context, Brightness.light);
+  static ThemeData dark(BuildContext context) =>
+      _theme(context, Brightness.dark);
 
-  static ThemeData get darkTheme => ThemeData(
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: Colors.transparent,
-    colorScheme: const ColorScheme.dark(
-      primary: AppColors.darkPrimary,
-      secondary: AppColors.darkSecondary,
-      surface: AppColors.darkSurface,
-      onSurface: AppColors.darkOnSurface,
-    ),
-    textTheme: AppTypography.textTheme.apply(
-      bodyColor: AppColors.darkPrimary,
-      displayColor: AppColors.darkPrimary,
-    ),
-    useMaterial3: true,
-  );
+  static ThemeData _theme(BuildContext context, Brightness brightness) {
+    final isDark = brightness == Brightness.dark;
+    final primary = isDark ? AppColors.darkPrimary : AppColors.lightPrimary;
+
+    return ThemeData(
+      brightness: brightness,
+      scaffoldBackgroundColor: Colors.transparent,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: primary,
+        brightness: brightness,
+        primary: primary,
+        secondary: isDark ? AppColors.darkSecondary : AppColors.lightSecondary,
+        surface: isDark ? AppColors.darkSurface : AppColors.lightSurface,
+        onSurface: isDark ? AppColors.darkOnSurface : AppColors.lightOnSurface,
+      ),
+      textTheme: AppTypography.textTheme(
+        context,
+      ).apply(bodyColor: primary, displayColor: primary),
+      useMaterial3: true,
+    );
+  }
+
+  // Legacy getters (will be used by MaterialApp, but builder will override if needed)
+  static ThemeData get lightTheme =>
+      ThemeData(brightness: Brightness.light, useMaterial3: true);
+  static ThemeData get darkTheme =>
+      ThemeData(brightness: Brightness.dark, useMaterial3: true);
 }

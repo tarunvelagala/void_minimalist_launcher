@@ -6,6 +6,6 @@ class HomeGlanceDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Glance", style: AppTypography.titleMedium);
+    return Text("Glance", style: AppTypography.titleMedium(context));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:return_zero/core/theme/app_typography.dart';
 
 class HomeUsageDisplay extends StatelessWidget {
   const HomeUsageDisplay({super.key});
@@ -8,8 +9,8 @@ class HomeUsageDisplay extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text("Screen Usage", style: Theme.of(context).textTheme.titleMedium),
-        Text("Unlocks", style: Theme.of(context).textTheme.titleMedium),
+        Text("Screen Usage", style: AppTypography.titleMedium(context)),
+        Text("Unlocks", style: AppTypography.titleMedium(context)),
       ],
     );
   }

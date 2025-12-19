@@ -1,168 +1,146 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class AppTypography {
-  static const String fontSans = 'DarkerGrotesque';
-  static const String fontMono = 'SpaceMono';
+  /// The global font size scale factor (0-7).
+  /// For now, we default to 1.0 (Middle/Normal).
+  /// In the future, this will be tied to a provider.
+  static double get scaleFactor => 1.0;
 
-  static const TextStyle displayLarge = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 57,
+  static double _scale(BuildContext context, double baseSize) {
+    // Basic adaptive scaling
+    final adaptiveScale = ResponsiveValue<double>(
+      context,
+      conditionalValues: [
+        const Condition.equals(name: MOBILE, value: 1.0),
+        const Condition.equals(name: TABLET, value: 1.15),
+        const Condition.largerThan(name: TABLET, value: 1.3),
+      ],
+    ).value;
+
+    return baseSize * adaptiveScale * scaleFactor;
+  }
+
+  static TextStyle displayLarge(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 57),
     fontWeight: FontWeight.w800,
     height: 1.12,
     letterSpacing: -0.25,
   );
 
-  static const TextStyle displayMedium = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 45,
+  static TextStyle displayMedium(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 45),
     fontWeight: FontWeight.w700,
     height: 1.16,
     letterSpacing: 0,
   );
 
-  static const TextStyle displaySmall = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 36,
+  static TextStyle displaySmall(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 36),
     fontWeight: FontWeight.w700,
     height: 1.22,
     letterSpacing: 0,
   );
 
-  static const TextStyle headlineLarge = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 32,
+  static TextStyle headlineLarge(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 32),
     fontWeight: FontWeight.w600,
     height: 1.25,
     letterSpacing: 0,
   );
 
-  static const TextStyle headlineMedium = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 28,
+  static TextStyle headlineMedium(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 28),
     fontWeight: FontWeight.w600,
     height: 1.29,
     letterSpacing: 0,
   );
 
-  static const TextStyle headlineSmall = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 24,
+  static TextStyle headlineSmall(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 24),
     fontWeight: FontWeight.w600,
     height: 1.33,
     letterSpacing: 0,
   );
 
-  static const TextStyle titleLarge = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 22,
+  static TextStyle titleLarge(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 22),
     fontWeight: FontWeight.w500,
     height: 1.27,
     letterSpacing: 0,
   );
 
-  static const TextStyle titleMedium = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
+  static TextStyle titleMedium(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 16),
+    fontWeight: FontWeight.w400, // Reduced from w500 to look less bold
     height: 1.5,
     letterSpacing: 0.15,
   );
 
-  static const TextStyle titleSmall = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 14,
+  static TextStyle titleSmall(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 14),
     fontWeight: FontWeight.w500,
     height: 1.43,
     letterSpacing: 0.1,
   );
 
-  static const TextStyle bodyLarge = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 16,
+  static TextStyle bodyLarge(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 16),
     fontWeight: FontWeight.w400,
     height: 1.5,
     letterSpacing: 0.5,
   );
 
-  static const TextStyle bodyMedium = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 14,
+  static TextStyle bodyMedium(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 14),
     fontWeight: FontWeight.w400,
     height: 1.43,
     letterSpacing: 0.25,
   );
 
-  static const TextStyle bodySmall = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 12,
+  static TextStyle bodySmall(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 12),
     fontWeight: FontWeight.w400,
     height: 1.33,
     letterSpacing: 0.4,
   );
 
-  static const TextStyle labelLarge = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 14,
+  static TextStyle labelLarge(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 14),
     fontWeight: FontWeight.w500,
     height: 1.43,
     letterSpacing: 0.1,
   );
 
-  static const TextStyle labelMedium = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 12,
+  static TextStyle labelMedium(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 12),
     fontWeight: FontWeight.w500,
     height: 1.33,
     letterSpacing: 0.5,
   );
 
-  static const TextStyle labelSmall = TextStyle(
-    fontFamily: fontSans,
-    fontSize: 11,
+  static TextStyle labelSmall(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 11),
     fontWeight: FontWeight.w500,
     height: 1.45,
     letterSpacing: 0.5,
   );
 
-  // --- Monospace (Space Mono) ---
-
-  static const TextStyle monoDisplay = TextStyle(
-    fontFamily: fontMono,
-    fontSize: 72,
-    fontWeight: FontWeight.w700,
-    height: 1.0,
-  );
-
-  static const TextStyle monoBody = TextStyle(
-    fontFamily: fontMono,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    height: 1.5,
-  );
-
-  static const TextStyle monoLabel = TextStyle(
-    fontFamily: fontMono,
-    fontSize: 12,
-    fontWeight: FontWeight.w700,
-    height: 1.0,
-    letterSpacing: 1.0,
-  );
-
-  static TextTheme get textTheme => const TextTheme(
-    displayLarge: displayLarge,
-    displayMedium: displayMedium,
-    displaySmall: displaySmall,
-    headlineLarge: headlineLarge,
-    headlineMedium: headlineMedium,
-    headlineSmall: headlineSmall,
-    titleLarge: titleLarge,
-    titleMedium: titleMedium,
-    titleSmall: titleSmall,
-    bodyLarge: bodyLarge,
-    bodyMedium: bodyMedium,
-    bodySmall: bodySmall,
-    labelLarge: labelLarge,
-    labelMedium: labelMedium,
-    labelSmall: labelSmall,
+  static TextTheme textTheme(BuildContext context) => TextTheme(
+    displayLarge: displayLarge(context),
+    displayMedium: displayMedium(context),
+    displaySmall: displaySmall(context),
+    headlineLarge: headlineLarge(context),
+    headlineMedium: headlineMedium(context),
+    headlineSmall: headlineSmall(context),
+    titleLarge: titleLarge(context),
+    titleMedium: titleMedium(context),
+    titleSmall: titleSmall(context),
+    bodyLarge: bodyLarge(context),
+    bodyMedium: bodyMedium(context),
+    bodySmall: bodySmall(context),
+    labelLarge: labelLarge(context),
+    labelMedium: labelMedium(context),
+    labelSmall: labelSmall(context),
   );
 }

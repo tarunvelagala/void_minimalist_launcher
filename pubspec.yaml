@@ -70,20 +70,3 @@ flutter:
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/to/asset-from-package
-
-  fonts:
-    - family: DarkerGrotesque
-      fonts:
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Regular.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Bold.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Medium.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-SemiBold.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Black.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-ExtraBold.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Light.ttf
-    - family: SpaceMono
-      fonts:
-        - asset: assets/fonts/spacemono/SpaceMono-Regular.ttf
-        - asset: assets/fonts/spacemono/SpaceMono-Bold.ttf
-        - asset: assets/fonts/spacemono/SpaceMono-Italic.ttf
-        - asset: assets/fonts/spacemono/SpaceMono-BoldItalic.ttf
