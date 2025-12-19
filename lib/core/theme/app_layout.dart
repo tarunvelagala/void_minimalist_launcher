@@ -44,17 +44,17 @@ class AppLayout {
   static int headerFlex(BuildContext context) => ResponsiveValue<int>(
     context,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 30),
-      const Condition.equals(name: TABLET, value: 30),
-      const Condition.largerThan(name: TABLET, value: 30),
+      const Condition.equals(name: MOBILE, value: 20),
+      const Condition.equals(name: TABLET, value: 20),
+      const Condition.largerThan(name: TABLET, value: 20),
     ],
   ).value;
   static int appsFlex(BuildContext context) => ResponsiveValue<int>(
     context,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 60),
-      const Condition.equals(name: TABLET, value: 60),
-      const Condition.largerThan(name: TABLET, value: 60),
+      const Condition.equals(name: MOBILE, value: 70),
+      const Condition.equals(name: TABLET, value: 70),
+      const Condition.largerThan(name: TABLET, value: 70),
     ],
   ).value;
   static int instructionsFlex(BuildContext context) => ResponsiveValue<int>(

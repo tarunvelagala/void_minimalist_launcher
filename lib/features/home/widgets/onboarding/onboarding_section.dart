@@ -10,14 +10,17 @@ class OnboardingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: AppLayout.instructionsFlex(context),
-      child: ListView.builder(
-        itemCount: OnboardingConstants.instructions.length,
-        itemBuilder: (context, index) {
-          return OnboardingItem(
-            index: index + 1,
-            value: OnboardingConstants.instructions[index],
-          );
-        },
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            OnboardingConstants.instructions.length,
+            (index) => OnboardingItem(
+              index: index + 1,
+              value: OnboardingConstants.instructions[index],
+            ),
+          ),
+        ),
       ),
     );
   }

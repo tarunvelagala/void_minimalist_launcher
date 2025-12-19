@@ -10,7 +10,7 @@ class OnboardingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       "$index. $value",
-      style: Theme.of(context).textTheme.headlineSmall,
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 }
