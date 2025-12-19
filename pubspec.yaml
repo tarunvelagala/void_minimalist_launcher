@@ -75,13 +75,12 @@ flutter:
         - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Bold.ttf
         - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Medium.ttf
         - asset: assets/fonts/darkergrotesque/DarkerGrotesque-SemiBold.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Thin.ttf
+        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Black.ttf
         - asset: assets/fonts/darkergrotesque/DarkerGrotesque-ExtraBold.ttf
-        - asset: assets/fonts/darkergrotesque/DarkerGrotesque-ExtraLight.ttf
         - asset: assets/fonts/darkergrotesque/DarkerGrotesque-Light.ttf
     - family: SpaceMono
       fonts:
-        - asset: assets/fonts/spacemonospace/SpaceMono-Regular.ttf
-        - asset: assets/fonts/spacemonospace/SpaceMono-Bold.ttf
-        - asset: assets/fonts/spacemonospace/SpaceMono-Italic.ttf
-        - asset: assets/fonts/spacemonospace/SpaceMono-BoldItalic.ttf
+        - asset: assets/fonts/spacemono/SpaceMono-Regular.ttf
+        - asset: assets/fonts/spacemono/SpaceMono-Bold.ttf
+        - asset: assets/fonts/spacemono/SpaceMono-Italic.ttf
+        - asset: assets/fonts/spacemono/SpaceMono-BoldItalic.ttf
