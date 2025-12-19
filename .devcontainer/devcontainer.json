@@ -1,5 +1,5 @@
 {
-    "name": "Void Launcher - Flutter Dev Container",
+    "name": "Return Zero - Flutter Dev Container",
     // Reference your custom Dockerfile
     "build": {
         "dockerfile": "Dockerfile"

@@ -1,4 +1,4 @@
-# Void Launcher - Implementation Plan
+# Return Zero - Implementation Plan
 
 An ultra-minimalist, **icon-less**, distraction-free Flutter launcher focused on reducing phone usage through awareness and control.
 
