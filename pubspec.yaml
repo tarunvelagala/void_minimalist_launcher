@@ -36,6 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
 
+  # The Responsive Framework offers widgets for building responsive layouts across mobile, desktop and web.
+  responsive_framework: ^1.5.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
