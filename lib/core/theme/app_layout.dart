@@ -39,4 +39,30 @@ class AppLayout {
       const Condition.largerThan(name: TABLET, value: 96.0),
     ],
   ).value;
+
+  // --- Flex Factor ---
+  static int headerFlex(BuildContext context) => ResponsiveValue<int>(
+    context,
+    conditionalValues: [
+      const Condition.equals(name: MOBILE, value: 30),
+      const Condition.equals(name: TABLET, value: 30),
+      const Condition.largerThan(name: TABLET, value: 30),
+    ],
+  ).value;
+  static int appsFlex(BuildContext context) => ResponsiveValue<int>(
+    context,
+    conditionalValues: [
+      const Condition.equals(name: MOBILE, value: 60),
+      const Condition.equals(name: TABLET, value: 60),
+      const Condition.largerThan(name: TABLET, value: 60),
+    ],
+  ).value;
+  static int instructionsFlex(BuildContext context) => ResponsiveValue<int>(
+    context,
+    conditionalValues: [
+      const Condition.equals(name: MOBILE, value: 10),
+      const Condition.equals(name: TABLET, value: 10),
+      const Condition.largerThan(name: TABLET, value: 10),
+    ],
+  ).value;
 }

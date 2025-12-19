@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:return_zero/core/theme/app_layout.dart';
+import 'widgets/home_header.dart';
+import 'widgets/home_apps.dart';
+import 'widgets/onboarding_instructions.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -10,6 +14,20 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SafeArea(
+        child: OrientationBuilder(
+          builder: (context, orientation) {
+            return Padding(
+              padding: EdgeInsets.all(AppLayout.screenMargin(context)),
+              child: Column(
+                children: [HomeHeader(), HomeApps(), OnboardingInstructions()],
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
