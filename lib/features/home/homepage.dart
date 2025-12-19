@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
 import 'widgets/home_header.dart';
 import 'widgets/home_apps.dart';
-import 'widgets/onboarding_instructions.dart';
+import 'widgets/onboarding/onboarding_section.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -21,8 +21,10 @@ class _HomepageState extends State<Homepage> {
           builder: (context, orientation) {
             return Padding(
               padding: EdgeInsets.all(AppLayout.screenMargin(context)),
-              child: Column(
-                children: [HomeHeader(), HomeApps(), OnboardingInstructions()],
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [HomeHeader(), HomeApps(), OnboardingSection()],
               ),
             );
           },
