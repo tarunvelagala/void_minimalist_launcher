@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:return_zero/features/home/widgets/header/home_glance_display.dart';
 import 'package:return_zero/features/home/widgets/header/home_usage_display.dart';
 
 class HomeUsageColumn extends StatelessWidget {
@@ -11,7 +10,7 @@ class HomeUsageColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [HomeUsageDisplay(), HomeGlanceDisplay()],
+      children: const [HomeUsageDisplay()],
     );
   }
 }

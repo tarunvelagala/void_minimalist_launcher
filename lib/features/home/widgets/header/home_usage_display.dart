@@ -9,8 +9,21 @@ class HomeUsageDisplay extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text("Screen Usage", style: AppTypography.titleMedium(context)),
-        Text("Unlocks", style: AppTypography.titleMedium(context)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text('42', style: AppTypography.statValue(context)),
+            Text('UNLOCKS', style: AppTypography.statLabel(context)),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text('12h 1m', style: AppTypography.statValue(context)),
+            Text('USAGE', style: AppTypography.statLabel(context)),
+          ],
+        ),
       ],
     );
   }

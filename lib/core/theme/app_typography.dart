@@ -147,6 +147,20 @@ class AppTypography {
     letterSpacing: 0.5,
   );
 
+  static TextStyle statValue(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 16),
+    fontWeight: FontWeight.bold,
+    height: 1.25,
+    letterSpacing: 0.5,
+  );
+
+  static TextStyle statLabel(BuildContext context) => TextStyle(
+    fontSize: _scale(context, 8),
+    fontWeight: FontWeight.w400,
+    height: 1.25,
+    letterSpacing: 0.5,
+  );
+
   static TextTheme textTheme(BuildContext context) => TextTheme(
     displayLarge: displayLarge(context),
     displayMedium: displayMedium(context),
