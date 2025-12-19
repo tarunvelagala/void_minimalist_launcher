@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
-import 'widgets/home_header.dart';
+import 'widgets/header/home_header_section.dart';
 import 'widgets/home_apps.dart';
 import 'widgets/onboarding/onboarding_section.dart';
 
@@ -22,9 +22,13 @@ class _HomepageState extends State<Homepage> {
             return Padding(
               padding: EdgeInsets.all(AppLayout.screenMargin(context)),
               child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [HomeHeader(), HomeApps(), OnboardingSection()],
+                children: [
+                  HomeHeaderSection(),
+                  HomeApps(),
+                  OnboardingSection(),
+                ],
               ),
             );
           },
