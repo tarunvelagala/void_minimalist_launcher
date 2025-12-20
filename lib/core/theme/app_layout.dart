@@ -89,26 +89,4 @@ class AppLayout {
       ],
     ).value;
   }
-
-  static double settingsSectionAspectRatio(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    final columns = settingsColumnCount(context);
-
-    final horizontalMargin = screenMargin(context) * 2;
-    final spacing = sectionSpacing(context) * (columns - 1);
-
-    final usableWidth = size.width - horizontalMargin - spacing;
-    final itemWidth = usableWidth / columns;
-
-    final usableHeight =
-        size.height -
-        MediaQuery.of(context).padding.vertical -
-        screenMargin(context) * 2;
-
-    final totalFlex = flexMedium(context) * 4;
-    final itemHeight = usableHeight / (totalFlex / flexMedium(context));
-
-    return itemWidth / itemHeight;
-  }
 }

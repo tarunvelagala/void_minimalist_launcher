@@ -20,37 +20,36 @@ class _HomepageState extends State<Homepage> {
     return GestureDetector(
       onLongPress: () => context.go(AppRoutes.settings),
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
-        body: SafeArea(
-          child: OrientationBuilder(
-            builder: (context, orientation) {
-              return Padding(
-                padding: EdgeInsets.all(AppLayout.screenMargin(context)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      flex: AppLayout.flexMedium(context),
-                      child: const HomeHeaderSection(),
-                    ),
-                    Expanded(
-                      flex: AppLayout.flexSmall(context),
-                      child: const GlanceSection(),
-                    ),
-                    Expanded(
-                      flex: AppLayout.flexLarge(context),
-                      child: const HomeApps(),
-                    ),
-                    Expanded(
-                      flex: AppLayout.flexSmall(context),
-                      child: const OnboardingSection(),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
+        body: OrientationBuilder(
+          builder: (context, orientation) {
+            return Padding(
+              padding: EdgeInsets.all(AppLayout.screenMargin(context)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    flex: AppLayout.flexMedium(context),
+                    child: const HomeHeaderSection(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexSmall(context),
+                    child: const GlanceSection(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexLarge(context),
+                    child: const HomeApps(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexSmall(context),
+                    child: const OnboardingSection(),
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );
