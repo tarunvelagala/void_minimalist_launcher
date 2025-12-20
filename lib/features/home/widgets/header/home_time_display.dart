@@ -11,7 +11,7 @@ class HomeTimeDisplay extends StatefulWidget {
 }
 
 class _HomeTimeDisplayState extends State<HomeTimeDisplay> {
-  late Timer _timer;
+  Timer? _timer;
   late DateTime _currentTime;
 
   @override
@@ -22,18 +22,31 @@ class _HomeTimeDisplayState extends State<HomeTimeDisplay> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(minutes: 1), (timer) {
-      if (mounted) {
-        setState(() {
-          _currentTime = DateTime.now();
-        });
-      }
+    final now = DateTime.now();
+    final secondsUntilNextMinute = 60 - now.second;
+
+    // First update exactly at next minute
+    Timer(Duration(seconds: secondsUntilNextMinute), () {
+      if (!mounted) return;
+
+      setState(() {
+        _currentTime = DateTime.now();
+      });
+
+      // Then update every minute, aligned
+      _timer = Timer.periodic(const Duration(minutes: 1), (_) {
+        if (mounted) {
+          setState(() {
+            _currentTime = DateTime.now();
+          });
+        }
+      });
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
