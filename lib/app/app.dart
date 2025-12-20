@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:return_zero/app/app_launcher.dart';
 import 'package:return_zero/core/theme/app_theme.dart';
+import 'package:return_zero/routes/app_router.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       title: 'Return Zero',
       debugShowCheckedModeBanner: false,
       builder: (context, child) => ResponsiveBreakpoints.builder(
@@ -31,7 +32,6 @@ class App extends StatelessWidget {
         ],
       ),
       themeMode: ThemeMode.system,
-      home: const AppLauncher(),
     );
   }
 }
