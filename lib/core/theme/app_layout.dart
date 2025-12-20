@@ -5,6 +5,7 @@ class AppLayout {
   // --- Margin & Padding ---
   static double screenMargin(BuildContext context) => ResponsiveValue<double>(
     context,
+    defaultValue: 24.0,
     conditionalValues: [
       const Condition.equals(name: MOBILE, value: 24.0),
       const Condition.equals(name: TABLET, value: 40.0),
@@ -14,6 +15,7 @@ class AppLayout {
 
   static double contentPadding(BuildContext context) => ResponsiveValue<double>(
     context,
+    defaultValue: 16.0,
     conditionalValues: [
       const Condition.equals(name: MOBILE, value: 16.0),
       const Condition.equals(name: TABLET, value: 24.0),
@@ -24,6 +26,7 @@ class AppLayout {
   // --- Spacing ---
   static double elementSpacing(BuildContext context) => ResponsiveValue<double>(
     context,
+    defaultValue: 12.0,
     conditionalValues: [
       const Condition.equals(name: MOBILE, value: 12.0),
       const Condition.equals(name: TABLET, value: 20.0),
@@ -33,6 +36,7 @@ class AppLayout {
 
   static double sectionSpacing(BuildContext context) => ResponsiveValue<double>(
     context,
+    defaultValue: 40.0,
     conditionalValues: [
       const Condition.equals(name: MOBILE, value: 40.0),
       const Condition.equals(name: TABLET, value: 64.0),
@@ -40,38 +44,35 @@ class AppLayout {
     ],
   ).value;
 
-  // --- Flex Factor ---
-  static int headerFlex(BuildContext context) => ResponsiveValue<int>(
+  // --- Flex Factors ---
+  // --- Flex Factors ---
+  static int flexSmall(BuildContext context) => ResponsiveValue<int>(
     context,
+    defaultValue: 10,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 15),
-      const Condition.equals(name: TABLET, value: 15),
+      const Condition.equals(name: MOBILE, value: 10),
+      const Condition.equals(name: TABLET, value: 12),
       const Condition.largerThan(name: TABLET, value: 15),
     ],
   ).value;
-  static int appsFlex(BuildContext context) => ResponsiveValue<int>(
+
+  static int flexMedium(BuildContext context) => ResponsiveValue<int>(
     context,
+    defaultValue: 20,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 70),
-      const Condition.equals(name: TABLET, value: 70),
-      const Condition.largerThan(name: TABLET, value: 70),
-    ],
-  ).value;
-  static int instructionsFlex(BuildContext context) => ResponsiveValue<int>(
-    context,
-    conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 10),
-      const Condition.equals(name: TABLET, value: 10),
-      const Condition.largerThan(name: TABLET, value: 10),
+      const Condition.equals(name: MOBILE, value: 20),
+      const Condition.equals(name: TABLET, value: 25),
+      const Condition.largerThan(name: TABLET, value: 30),
     ],
   ).value;
 
-  static int glanceFlex(BuildContext context) => ResponsiveValue<int>(
+  static int flexLarge(BuildContext context) => ResponsiveValue<int>(
     context,
+    defaultValue: 60,
     conditionalValues: [
-      const Condition.equals(name: MOBILE, value: 5),
-      const Condition.equals(name: TABLET, value: 5),
-      const Condition.largerThan(name: TABLET, value: 5),
+      const Condition.equals(name: MOBILE, value: 60),
+      const Condition.equals(name: TABLET, value: 65),
+      const Condition.largerThan(name: TABLET, value: 70),
     ],
   ).value;
 }

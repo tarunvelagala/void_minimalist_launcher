@@ -7,7 +7,7 @@ class HomeApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: AppLayout.appsFlex(context),
+      flex: AppLayout.flexLarge(context),
       child: const Placeholder(),
     );
   }

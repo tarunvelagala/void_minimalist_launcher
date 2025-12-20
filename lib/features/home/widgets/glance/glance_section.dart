@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/core/theme/app_layout.dart';
 
 class GlanceSection extends StatefulWidget {
   const GlanceSection({super.key});
@@ -26,9 +25,6 @@ class _GlanceSectionState extends State<GlanceSection>
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: AppLayout.glanceFlex(context),
-      child: const Placeholder(),
-    );
+    return const Placeholder();
   }
 }

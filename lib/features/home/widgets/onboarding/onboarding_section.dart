@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:return_zero/core/theme/app_layout.dart';
 import 'onboarding_constants.dart';
 import 'onboarding_item.dart';
 
@@ -8,17 +7,17 @@ class OnboardingSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: AppLayout.instructionsFlex(context),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: List.generate(
-            OnboardingConstants.instructions.length,
-            (index) => OnboardingItem(
-              index: index + 1,
-              value: OnboardingConstants.instructions[index],
-            ),
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          OnboardingConstants.instructions.length,
+          (index) => OnboardingItem(
+            index: index + 1,
+            value: OnboardingConstants.instructions[index],
           ),
         ),
       ),

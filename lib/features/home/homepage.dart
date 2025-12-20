@@ -22,14 +22,26 @@ class _HomepageState extends State<Homepage> {
           builder: (context, orientation) {
             return Padding(
               padding: EdgeInsets.all(AppLayout.screenMargin(context)),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  HomeHeaderSection(),
-                  GlanceSection(),
-                  HomeApps(),
-                  OnboardingSection(),
+                  Expanded(
+                    flex: AppLayout.flexMedium(context),
+                    child: const HomeHeaderSection(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexSmall(context),
+                    child: const GlanceSection(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexLarge(context),
+                    child: const HomeApps(),
+                  ),
+                  Expanded(
+                    flex: AppLayout.flexSmall(context),
+                    child: const OnboardingSection(),
+                  ),
                 ],
               ),
             );

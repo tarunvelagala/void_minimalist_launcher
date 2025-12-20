@@ -11,9 +11,10 @@ class AppTypography {
     // Basic adaptive scaling
     final adaptiveScale = ResponsiveValue<double>(
       context,
+      defaultValue: 1.0,
       conditionalValues: [
         const Condition.equals(name: MOBILE, value: 1.0),
-        const Condition.equals(name: TABLET, value: 1.15),
+        const Condition.equals(name: TABLET, value: 1.2),
         const Condition.largerThan(name: TABLET, value: 1.3),
       ],
     ).value;
