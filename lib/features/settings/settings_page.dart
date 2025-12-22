@@ -24,11 +24,11 @@ class SettingsPage extends StatelessWidget {
       body: OrientationBuilder(
         builder: (context, orientation) {
           return Padding(
-            padding: EdgeInsets.all(AppLayout.screenMargin(context)),
+            padding: EdgeInsets.all(AppLayout.contentPadding(context)),
             child: MasonryGridView.count(
               crossAxisCount: AppLayout.settingsColumnCount(context),
-              mainAxisSpacing: AppLayout.sectionSpacing(context),
-              crossAxisSpacing: AppLayout.sectionSpacing(context),
+              mainAxisSpacing: AppLayout.contentPadding(context),
+              crossAxisSpacing: AppLayout.contentPadding(context),
               itemCount: settingsSections.length,
               itemBuilder: (context, index) {
                 return settingsSections[index];
