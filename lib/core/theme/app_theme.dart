@@ -25,6 +25,7 @@ class AppTheme {
       ),
       textTheme: AppTypography.textTheme(
         context,
+        scaleFactor: AppTypography.defaultScaleFactor,
       ).apply(bodyColor: primary, displayColor: primary),
       useMaterial3: true,
     );

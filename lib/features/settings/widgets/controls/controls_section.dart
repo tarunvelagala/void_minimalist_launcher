@@ -10,9 +10,27 @@ class ControlsSection extends StatelessWidget {
     return SettingsSection(
       title: 'Controls',
       children: [
-        Text('Swipe Left App', style: AppTypography.titleMedium(context)),
-        Text('Swipe Right App', style: AppTypography.titleMedium(context)),
-        Text('Double tap to lock', style: AppTypography.titleMedium(context)),
+        Text(
+          'Swipe Left App',
+          style: AppTypography.titleMedium(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
+        Text(
+          'Swipe Right App',
+          style: AppTypography.titleMedium(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
+        Text(
+          'Double tap to lock',
+          style: AppTypography.titleMedium(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
       ],
     );
   }

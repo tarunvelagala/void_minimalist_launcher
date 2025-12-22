@@ -19,7 +19,13 @@ class SettingsSection extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       spacing: AppLayout.elementSpacing(context),
       children: [
-        Text(title, style: AppTypography.headlineSmall(context)),
+        Text(
+          title,
+          style: AppTypography.headlineSmall(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
         ...children,
       ],
     );

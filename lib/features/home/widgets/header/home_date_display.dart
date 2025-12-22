@@ -44,6 +44,12 @@ class _HomeDateDisplayState extends State<HomeDateDisplay> {
   @override
   Widget build(BuildContext context) {
     final dateStr = DateFormat('E, d MMM').format(_currentDate);
-    return Text(dateStr, style: AppTypography.dateDisplay(context));
+    return Text(
+      dateStr,
+      style: AppTypography.dateDisplay(
+        context,
+        scaleFactor: AppTypography.defaultScaleFactor,
+      ),
+    );
   }
 }

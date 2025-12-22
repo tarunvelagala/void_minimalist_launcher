@@ -12,16 +12,40 @@ class HomeUsageDisplay extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('42', style: AppTypography.statValue(context)),
-            Text('UNLOCKS', style: AppTypography.statLabel(context)),
+            Text(
+              '42',
+              style: AppTypography.statValue(
+                context,
+                scaleFactor: AppTypography.defaultScaleFactor,
+              ),
+            ),
+            Text(
+              'UNLOCKS',
+              style: AppTypography.statLabel(
+                context,
+                scaleFactor: AppTypography.defaultScaleFactor,
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text('12h 1m', style: AppTypography.statValue(context)),
-            Text('USAGE', style: AppTypography.statLabel(context)),
+            Text(
+              '12h 1m',
+              style: AppTypography.statValue(
+                context,
+                scaleFactor: AppTypography.defaultScaleFactor,
+              ),
+            ),
+            Text(
+              'USAGE',
+              style: AppTypography.statLabel(
+                context,
+                scaleFactor: AppTypography.defaultScaleFactor,
+              ),
+            ),
           ],
         ),
       ],

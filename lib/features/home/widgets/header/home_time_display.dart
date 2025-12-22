@@ -59,9 +59,21 @@ class _HomeTimeDisplayState extends State<HomeTimeDisplay> {
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: [
-        Text(timeStr, style: AppTypography.timeDisplay(context)),
+        Text(
+          timeStr,
+          style: AppTypography.timeDisplay(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
         const SizedBox(width: 4),
-        Text(meridianStr, style: AppTypography.meridianDisplay(context)),
+        Text(
+          meridianStr,
+          style: AppTypography.meridianDisplay(
+            context,
+            scaleFactor: AppTypography.defaultScaleFactor,
+          ),
+        ),
       ],
     );
   }
