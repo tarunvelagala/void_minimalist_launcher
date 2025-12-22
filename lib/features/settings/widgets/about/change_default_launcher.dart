@@ -18,7 +18,7 @@ class ChangeDefaultLauncher extends StatelessWidget {
       },
       child: Text(
         'Choose Default Launcher',
-        style: AppTypography.bodyLarge(context),
+        style: AppTypography.titleMedium(context),
       ),
     );
   }
