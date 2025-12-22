@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
 
-class Controls extends StatelessWidget {
-  const Controls({super.key});
+class ControlsSection extends StatelessWidget {
+  const ControlsSection({super.key});
 
   @override
   Widget build(BuildContext context) {

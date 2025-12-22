@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
-import 'package:return_zero/features/home/widgets/settings/change_default_launcher.dart';
+import 'package:return_zero/features/settings/widgets/about/change_default_launcher.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});
@@ -17,7 +17,7 @@ class AboutSection extends StatelessWidget {
         spacing: AppLayout.contentPadding(context),
         children: [
           Text('About', style: AppTypography.headlineSmall(context)),
-          ChangeDefaultLauncher(),
+          const ChangeDefaultLauncher(),
         ],
       ),
     );

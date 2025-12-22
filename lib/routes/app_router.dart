@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:return_zero/features/home/homepage.dart';
-import 'package:return_zero/features/home/widgets/settings/settings_page.dart';
+import 'package:return_zero/features/settings/settings_page.dart';
 import 'app_routes.dart';
 
 final GoRouter appRouter = GoRouter(

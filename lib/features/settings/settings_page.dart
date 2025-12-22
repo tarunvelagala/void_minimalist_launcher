@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:return_zero/core/theme/app_layout.dart';
-import 'package:return_zero/features/home/widgets/settings/about_section.dart';
-import 'package:return_zero/features/home/widgets/settings/controls.dart';
-import 'package:return_zero/features/home/widgets/settings/home_and_layout.dart';
-import 'package:return_zero/features/home/widgets/settings/look_and_feel.dart';
+import 'package:return_zero/features/settings/widgets/about/about_section.dart';
+import 'package:return_zero/features/settings/widgets/controls/controls_section.dart';
+import 'package:return_zero/features/settings/widgets/homeandlayout/home_and_layout_section.dart';
+import 'package:return_zero/features/settings/widgets/lookandfeel/look_and_feel_section.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -13,9 +13,9 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> settingsSections = [
       AboutSection(),
-      HomeAndLayout(),
-      LookAndFeel(),
-      Controls(),
+      HomeAndLayoutSection(),
+      LookAndFeelSection(),
+      ControlsSection(),
     ];
 
     return Scaffold(
