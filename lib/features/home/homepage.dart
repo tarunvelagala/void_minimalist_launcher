@@ -19,6 +19,11 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: () => context.go(AppRoutes.settings),
+      onVerticalDragEnd: (details) {
+        if (details.primaryVelocity! < 0) {
+          context.push(AppRoutes.appDrawer);
+        }
+      },
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
