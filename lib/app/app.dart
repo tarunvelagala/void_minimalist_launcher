@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:return_zero/core/theme/app_theme.dart';
 import 'package:return_zero/routes/app_router.dart';
+import 'package:return_zero/providers/theme_provider.dart';
 
-class App extends StatelessWidget {
+class App extends ConsumerWidget {
   const App({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final themeMode = ref.watch(themeProvider);
     return MaterialApp.router(
       routerConfig: appRouter,
       title: 'Return Zero',
@@ -31,7 +34,7 @@ class App extends StatelessWidget {
           const Breakpoint(start: 1921, end: double.infinity, name: '4K'),
         ],
       ),
-      themeMode: ThemeMode.system,
+      themeMode: themeMode,
     );
   }
 }
