@@ -27,8 +27,8 @@ class SettingsPage extends StatelessWidget {
             padding: EdgeInsets.all(AppLayout.contentPadding(context)),
             child: MasonryGridView.count(
               crossAxisCount: AppLayout.settingsColumnCount(context),
-              mainAxisSpacing: AppLayout.contentPadding(context),
-              crossAxisSpacing: AppLayout.contentPadding(context),
+              mainAxisSpacing: AppLayout.sectionSpacing(context),
+              crossAxisSpacing: AppLayout.sectionSpacing(context),
               itemCount: settingsSections.length,
               itemBuilder: (context, index) {
                 return settingsSections[index];
