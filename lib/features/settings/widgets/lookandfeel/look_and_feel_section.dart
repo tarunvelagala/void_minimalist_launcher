@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/features/settings/widgets/lookandfeel/widgets/theme_mode_widget.dart';
-import 'package:return_zero/features/settings/widgets/settings_section.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_section.dart';
+import 'package:return_zero/features/settings/widgets/lookandfeel/theme_mode_widget.dart';
 
 class LookAndFeelSection extends StatelessWidget {
   const LookAndFeelSection({super.key});
