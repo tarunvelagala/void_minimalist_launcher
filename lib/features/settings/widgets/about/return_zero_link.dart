@@ -15,7 +15,7 @@ class ReturnZeroLink extends StatelessWidget {
       control: GestureDetector(
         onTap: () => _launchURL(githubUrl),
         child: Text(
-          version,
+          '$version (Stable Build)',
           style: AppTypography.bodyMedium(
             context,
             scaleFactor: AppTypography.defaultScaleFactor

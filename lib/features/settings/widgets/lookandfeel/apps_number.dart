@@ -2,20 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
 import 'package:return_zero/features/settings/widgets/common/settings_row.dart';
 
-class AppAlignment extends StatefulWidget {
-  const AppAlignment({super.key});
+class AppsNumber extends StatelessWidget {
+  const AppsNumber({super.key});
 
-  @override
-  State<AppAlignment> createState() => _AppAlignmentState();
-}
-
-class _AppAlignmentState extends State<AppAlignment> {
   @override
   Widget build(BuildContext context) {
     return SettingsRow(
-      label: 'App Alignment',
+      label: 'Apps on Home Screen',
       control: Text(
-        'Center',
+        '5',
         style: AppTypography.bodySmall(
           context,
           scaleFactor: AppTypography.defaultScaleFactor,

@@ -10,9 +10,10 @@ class ControlsSection extends StatelessWidget {
     return SettingsSection(
       title: 'Controls',
       children: [
-        SettingsLabel('Gesture Controls'),
+        SettingsLabel('Swipe Left App'),
         SettingsLabel('Swipe Right App'),
         SettingsLabel('Double tap to lock'),
+        SettingsLabel('Triple tap for flashlight'),
       ],
     );
   }

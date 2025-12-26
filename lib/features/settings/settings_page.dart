@@ -12,10 +12,10 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Widget> settingsSections = [
-      AboutSection(),
       HomeAndLayoutSection(),
       LookAndFeelSection(),
       ControlsSection(),
+      AboutSection(),
     ];
 
     return Scaffold(
