@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_label.dart';
 
 class AppAlignment extends StatefulWidget {
   const AppAlignment({super.key});
@@ -14,13 +15,7 @@ class _AppAlignmentState extends State<AppAlignment> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'App Alignment',
-          style: AppTypography.titleMedium(
-            context,
-            scaleFactor: AppTypography.defaultScaleFactor,
-          ),
-        ),
+        SettingsLabel('App Alignment'),
         Text(
           'Center',
           style: AppTypography.bodyMedium(

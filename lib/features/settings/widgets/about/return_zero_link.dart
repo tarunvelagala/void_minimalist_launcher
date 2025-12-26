@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_row.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
 
@@ -9,27 +10,18 @@ class ReturnZeroLink extends StatelessWidget {
   Widget build(BuildContext context) {
     const String githubUrl = "https://github.com/tarunvelagala/return_zero";
     const String version = 'v1.0.0';
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'App Version',
-          style: AppTypography.titleMedium(
+    return SettingsRow(
+      label: 'App Version',
+      control: GestureDetector(
+        onTap: () => _launchURL(githubUrl),
+        child: Text(
+          version,
+          style: AppTypography.bodyMedium(
             context,
-            scaleFactor: AppTypography.defaultScaleFactor,
+            scaleFactor: AppTypography.defaultScaleFactor
           ),
         ),
-        GestureDetector(
-          onTap: () => _launchURL(githubUrl),
-          child: Text(
-            version,
-            style: AppTypography.bodyMedium(
-              context,
-              scaleFactor: AppTypography.defaultScaleFactor,
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 

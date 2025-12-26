@@ -1,7 +1,7 @@
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:return_zero/core/theme/app_typography.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_label.dart';
 
 class ChangeDefaultLauncher extends StatelessWidget {
   const ChangeDefaultLauncher({super.key});
@@ -16,13 +16,7 @@ class ChangeDefaultLauncher extends StatelessWidget {
         );
         await intent.launch();
       },
-      child: Text(
-        'Choose Default Launcher',
-        style: AppTypography.titleMedium(
-          context,
-          scaleFactor: AppTypography.defaultScaleFactor,
-        ),
-      ),
+      child: SettingsLabel('Change Default Launcher')
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:return_zero/core/theme/app_typography.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_label.dart';
 import 'package:return_zero/providers/theme_provider.dart';
 
 class ThemeModeWidget extends ConsumerWidget {
@@ -13,13 +14,7 @@ class ThemeModeWidget extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'Theme Mode',
-          style: AppTypography.titleMedium(
-            context,
-            scaleFactor: AppTypography.defaultScaleFactor,
-          ),
-        ),
+        SettingsLabel('Theme Mode'),
         Text(
           currentThemeMode.toString(),
           style: AppTypography.bodyMedium(

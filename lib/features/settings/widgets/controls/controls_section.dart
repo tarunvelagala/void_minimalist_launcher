@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/core/theme/app_typography.dart';
-import 'package:return_zero/features/settings/widgets/settings_section.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_label.dart';
+import 'package:return_zero/features/settings/widgets/common/settings_section.dart';
 
 class ControlsSection extends StatelessWidget {
   const ControlsSection({super.key});
@@ -10,27 +10,9 @@ class ControlsSection extends StatelessWidget {
     return SettingsSection(
       title: 'Controls',
       children: [
-        Text(
-          'Swipe Left App',
-          style: AppTypography.titleMedium(
-            context,
-            scaleFactor: AppTypography.defaultScaleFactor,
-          ),
-        ),
-        Text(
-          'Swipe Right App',
-          style: AppTypography.titleMedium(
-            context,
-            scaleFactor: AppTypography.defaultScaleFactor,
-          ),
-        ),
-        Text(
-          'Double tap to lock',
-          style: AppTypography.titleMedium(
-            context,
-            scaleFactor: AppTypography.defaultScaleFactor,
-          ),
-        ),
+        SettingsLabel('Gesture Controls'),
+        SettingsLabel('Swipe Right App'),
+        SettingsLabel('Double tap to lock'),
       ],
     );
   }
