@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:return_zero/features/settings/widgets/homeandlayout/widgets/app_alignment.dart';
+import 'package:return_zero/features/settings/widgets/homeandlayout/widgets/change_default_launcher.dart';
 import 'package:return_zero/features/settings/widgets/settings_section.dart';
 
 class HomeAndLayoutSection extends StatelessWidget {
@@ -7,6 +8,9 @@ class HomeAndLayoutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsSection(title: 'Home & Layout', children: [AppAlignment()]);
+    return SettingsSection(
+      title: 'Home & Layout',
+      children: [ChangeDefaultLauncher(), AppAlignment()],
+    );
   }
 }

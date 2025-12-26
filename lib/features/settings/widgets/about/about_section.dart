@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:return_zero/features/settings/widgets/about/change_default_launcher.dart';
+import 'package:return_zero/features/settings/widgets/about/return_zero_link.dart';
 import 'package:return_zero/features/settings/widgets/settings_section.dart';
 
 class AboutSection extends StatelessWidget {
@@ -7,6 +7,6 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SettingsSection(title: 'About', children: [ChangeDefaultLauncher()]);
+    return SettingsSection(title: 'Return Zero', children: [ReturnZeroLink()]);
   }
 }
