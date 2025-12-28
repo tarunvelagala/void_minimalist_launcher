@@ -18,9 +18,9 @@ class App extends ConsumerWidget {
       builder: (context, child) => ResponsiveBreakpoints.builder(
         child: Builder(
           builder: (context) {
-            final brightness = MediaQuery.of(context).platformBrightness;
+            final mode = ref.watch(themeProvider);
             return Theme(
-              data: brightness == Brightness.dark
+              data: mode == ThemeMode.dark
                   ? AppTheme.dark(context)
                   : AppTheme.light(context),
               child: child!,

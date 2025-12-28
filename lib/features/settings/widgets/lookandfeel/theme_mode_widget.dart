@@ -10,19 +10,26 @@ class ThemeModeWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentThemeMode = ref.watch(themeProvider);
+    final notifier = ref.read(themeProvider.notifier);
+    final modes = [ThemeMode.light, ThemeMode.dark];
+    final labels = ["Light", "Dark"];
 
     return SettingsRow(
       label: 'Theme Mode',
-      control: Text(
-        currentThemeMode == ThemeMode.system
-            ? 'System'
-            : currentThemeMode == ThemeMode.light
-            ? 'Light'
-            : 'Dark',
-        style: AppTypography.bodySmall(
+      control: ToggleButtons(
+        isSelected: modes.map((m) => m == currentThemeMode).toList(),
+        onPressed: (index) => notifier.apply(modes[index]),
+        renderBorder: false,
+        splashColor: Colors.transparent,
+        hoverColor: Colors.transparent,
+        fillColor: Colors.transparent,
+        selectedColor: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.onSurface,
+        textStyle: AppTypography.bodySmall(
           context,
           scaleFactor: AppTypography.defaultScaleFactor,
         ),
+        children: labels.map((label) => Text(label)).toList(),
       ),
     );
   }
